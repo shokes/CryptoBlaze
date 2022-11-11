@@ -13,6 +13,8 @@ module.exports = {
       lightBlue: 'var(--lightBlue)',
       hover: 'var(--hover)',
       blue: 'var(--blue)',
+      green: 'var(--green)',
+      red: 'var(--red)',
     },
   },
   plugins: [require('daisyui')],

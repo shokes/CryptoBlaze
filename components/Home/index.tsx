@@ -1,10 +1,11 @@
 import Layout from '../Layout';
+import Coins from '../Coins';
 
 const Home = () => {
   const activePage = 'Home';
   return (
     <Layout activePage={activePage}>
-      <div>dddd</div>
+      <Coins />
     </Layout>
   );
 };

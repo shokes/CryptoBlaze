@@ -72,7 +72,7 @@ const Navigation = () => {
   ];
 
   return (
-    <section className='mb-[35px]'>
+    <section >
       <div className='flex items-center gap-5 justify-between pt-5 font-medium'>
         <Link href='/' className='flex gap-2 items-center font-bold text-xl'>
           {' '}
@@ -97,7 +97,7 @@ const Navigation = () => {
                   return (
                     <li
                       key={item.title}
-                      className='hover:text-blue hover:bg-lightBlue  cursor-pointer p-3 duration-150 ease-in-out'
+                      className='hover:text-blue hover:bg-lightBlue text-sm  cursor-pointer p-3 duration-150 ease-in-out'
                     >
                       {item.title}
                     </li>

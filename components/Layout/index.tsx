@@ -2,6 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import Navigation from '../Navigation';
 import Menu from '../Menu';
+import Footer from '../Footer';
 import LayoutTypes from '../../interfaces/layoutTypes';
 
 const Layout = ({ children, activePage }: LayoutTypes) => {
@@ -13,6 +14,7 @@ const Layout = ({ children, activePage }: LayoutTypes) => {
       <Navigation />
       <Menu />
       {children}
+      <Footer />
     </div>
   );
 };

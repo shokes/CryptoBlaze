@@ -13,14 +13,38 @@
   --lightBlue: #a5d8ff;
   --hover: #1c7ed6;
   --blue: #1864ab;
+  --green: #2f9e44;
+  --red: #e03131;
 }
 
 body {
   background: #e7f5ff;
   font-family: 'Open Sans', sans-serif;
+  letter-spacing: 0.6px;
 }
 
 .container {
   max-width: 75rem;
   margin: 0 auto;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td,
+th {
+  /* border: 1px solid #dddddd; */
+  text-align: left;
+  padding: 28px 8px;
+}
+
+/* tr:nth-child(even) {
+  background-color: #dddddd;
+} */
+
+tr {
+  padding: 34rem;
 }

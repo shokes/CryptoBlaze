@@ -34,7 +34,7 @@ const Menu = () => {
     },
   ];
   return (
-    <div>
+    <div className='my-[40px]'>
       <div className='flex items-center gap-[64px] font-medium'>
         {menuItems.map((item) => {
           const { title, id } = item;
