@@ -7,6 +7,8 @@ const Coins = () => {
   const url =
     'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false';
 
+  //api.coingecko.com/api/v3/coins/bitcoinmarkets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false'
+
   const getCryptos = async () => {
     const response = await fetch(url);
     const data = await response.json();
@@ -68,7 +70,7 @@ const Coins = () => {
                     </td>
                     <td>{index + 1}</td>
                     <td className='flex gap-3 items-center'>
-                      <Image src={image} alt={name} width={20} height={20} />
+                      <Image src={image} alt={name} width={30} height={30} />
                       {name}
                     </td>
                     <td className='uppercase text-sm'>{symbol}</td>
