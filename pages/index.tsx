@@ -1,16 +1,32 @@
 import React from 'react';
-import { Home } from '../components';
+import type { NextPage } from 'next';
+import Coins from '../components/Coins';
+import Layout from '../components/Layout';
 import Head from 'next/head';
+import { getCryptos } from '../redux/features/homeSlice';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
-const index = () => {
+const Home: NextPage = () => {
+  const dispatch = useDispatch();
+
+  const activePage = 'Home';
+
+  useEffect(() => {
+    dispatch(getCryptos());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div>
       <Head>
         <title>CryptoBlaze</title>
       </Head>
-      <Home />
+      <Layout activePage={activePage}>
+        <Coins />
+      </Layout>
     </div>
   );
 };
 
-export default index;
+export default Home;

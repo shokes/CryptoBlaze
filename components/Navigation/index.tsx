@@ -72,11 +72,18 @@ const Navigation = () => {
   ];
 
   return (
-    <section >
+    <section>
       <div className='flex items-center gap-5 justify-between pt-5 font-medium'>
         <Link href='/' className='flex gap-2 items-center font-bold text-xl'>
           {' '}
-          <Image src={Logo} width={50} height={50} alt='logo' /> CryptoBlaze
+          <Image
+            src={Logo}
+            width={50}
+            height={50}
+            alt='logo'
+            className='w-auto h-auto'
+          />{' '}
+          CryptoBlaze
         </Link>{' '}
         {navItems.map((item) => {
           const { title, id, subTitles } = item;

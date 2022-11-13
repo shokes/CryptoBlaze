@@ -1,24 +1,28 @@
-import { useState, useEffect } from 'react';
 import { RiStarSLine } from 'react-icons/ri';
 import Image from 'next/image';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
+import { useState, useRef, useEffect } from 'react';
 
 const Coins = () => {
-  const [cryptos, setCryptos] = useState([]);
-  const url =
-    'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false';
+  const { cryptos } = useSelector((store: RootState) => store.home);
 
-  //api.coingecko.com/api/v3/coins/bitcoinmarkets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false'
+  const searchValue = useRef<HTMLInputElement>(null);
 
-  const getCryptos = async () => {
-    const response = await fetch(url);
-    const data = await response.json();
-
-    setCryptos(data);
-  };
+  const [searchCrypto, setSearchCrypto] = useState<string>('f');
+  console.log(searchCrypto);
 
   useEffect(() => {
-    getCryptos();
+    searchValue.current?.focus();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const inputHandler = () => {
+    if (searchValue.current) {
+      // console.log(searchValue.current.value);
+      setSearchCrypto(searchValue.current.value);
+    }
+  };
 
   if (cryptos.length !== 0) {
     return (
@@ -29,9 +33,11 @@ const Coins = () => {
               Cryptocurrency Prices by Market Cap
             </h2>
             <input
+              ref={searchValue}
               type='text'
               placeholder='Search crypto'
               className=' border border-blue rounded w-[320px] h-[42px] p-2'
+              onChange={inputHandler}
             />
           </div>
 
@@ -52,7 +58,6 @@ const Coins = () => {
 
             <tbody className=' font-thin'>
               {cryptos.map((item: any, index: number) => {
-                console.log(item);
                 const {
                   name,
                   image,
@@ -70,7 +75,13 @@ const Coins = () => {
                     </td>
                     <td>{index + 1}</td>
                     <td className='flex gap-3 items-center'>
-                      <Image src={image} alt={name} width={30} height={30} />
+                      <Image
+                        src={image}
+                        alt={name}
+                        width={30}
+                        height={30}
+                        className='w-auto h-auto'
+                      />
                       {name}
                     </td>
                     <td className='uppercase text-sm'>{symbol}</td>
