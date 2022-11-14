@@ -4,18 +4,47 @@ import Coins from '../components/Coins';
 import Layout from '../components/Layout';
 import Head from 'next/head';
 import { getCryptos } from '../redux/features/homeSlice';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useEffect, useState, useRef } from 'react';
+import { RootState } from '../redux/store';
+import { useSelector, useDispatch } from 'react-redux';
 
 const Home: NextPage = () => {
   const dispatch = useDispatch();
-
+  const { cryptos } = useSelector((store: RootState) => store.home);
+  const [searchCrypto, setSearchCrypto] = useState<string>('');
+  const [coins, setCoins] = useState([]);
+  const searchValue = useRef<HTMLInputElement>(null);
   const activePage = 'Home';
 
   useEffect(() => {
     dispatch(getCryptos());
+    searchValue.current?.focus();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    setCoins(cryptos);
+  }, [cryptos]);
+
+  useEffect(() => {
+    if (searchCrypto === '') {
+      setCoins(cryptos);
+    } else {
+      let filteredResult = cryptos.filter((item: { name: string }) =>
+        item.name.toLowerCase().includes(searchCrypto.toLowerCase())
+      );
+
+      setCoins(filteredResult);
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchCrypto]);
+
+  const inputHandler = () => {
+    if (searchValue.current) {
+      setSearchCrypto(searchValue.current.value);
+    }
+  };
 
   return (
     <div>
@@ -23,7 +52,11 @@ const Home: NextPage = () => {
         <title>CryptoBlaze</title>
       </Head>
       <Layout activePage={activePage}>
-        <Coins />
+        <Coins
+          cryptos={coins}
+          inputHandler={inputHandler}
+          searchValue={searchValue}
+        />
       </Layout>
     </div>
   );
