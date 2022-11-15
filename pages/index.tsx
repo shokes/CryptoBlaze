@@ -14,7 +14,7 @@ const Home: NextPage = () => {
   const [searchCrypto, setSearchCrypto] = useState<string>('');
   const [coins, setCoins] = useState([]);
   const searchValue = useRef<HTMLInputElement>(null);
-  const activePage = 'Home';
+  const activePage = 'home';
 
   useEffect(() => {
     dispatch(getCryptos());

@@ -12,7 +12,7 @@ const Layout = ({ children, activePage }: LayoutTypes) => {
         <title>CryptoBlaze - {activePage}</title>
       </Head>
       <Navigation />
-      <Menu />
+      <Menu active={activePage} />
       {children}
       <Footer />
     </div>

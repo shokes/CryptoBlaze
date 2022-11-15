@@ -9,11 +9,11 @@ const Navigation = () => {
     {
       id: 1,
       title: 'Cryptocurrencies',
-      url: '/',
+
       subTitles: [
         {
           title: 'Trending Coins',
-          url: '/',
+          url: '/trending',
         },
         {
           title: 'New Cryptocurrencies',
@@ -37,7 +37,7 @@ const Navigation = () => {
     {
       id: 2,
       title: 'Exchanges',
-      url: '/',
+
       subTitles: [
         {
           title: 'Crypto Exchanges',
@@ -57,15 +57,15 @@ const Navigation = () => {
     {
       id: 3,
       title: 'NFT',
-      url: '/',
+
       subTitles: [
         {
           title: 'NFT Floor price',
-          url: '/',
+          url: '/nft',
         },
         {
           title: 'NFT Related Coins',
-          url: '/',
+          url: '/nft',
         },
       ],
     },
@@ -102,12 +102,13 @@ const Navigation = () => {
               >
                 {subTitles.map((item) => {
                   return (
-                    <li
+                    <Link
                       key={item.title}
+                      href={item.url}
                       className='hover:text-blue hover:bg-lightBlue text-sm  cursor-pointer p-3 duration-150 ease-in-out'
                     >
                       {item.title}
-                    </li>
+                    </Link>
                   );
                 })}
               </ul>

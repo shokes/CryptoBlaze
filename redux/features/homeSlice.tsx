@@ -6,7 +6,7 @@ const initialState = {
   isLoading: false,
 };
 
-// fetching cryptos to be displayed home
+// fetching cryptos to be displayed on home
 
 export const getCryptos: any = createAsyncThunk(
   'cryptos/getCryptos',

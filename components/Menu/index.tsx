@@ -1,44 +1,59 @@
 import React from 'react';
-import MenuTypes from '../../interfaces/menuTypes';
+import MenuItemsTypes from '../../interfaces/menuItemsTypes';
+import MenuType from '../../interfaces/menuTypes';
+import Link from 'next/link';
 
-const Menu = () => {
-  const menuItems: MenuTypes[] = [
+const Menu = ({ active }: MenuType) => {
+  const menuItems: MenuItemsTypes[] = [
     {
       id: 1,
       title: 'Portfolio',
-      url: '/',
+      url: '/portfolio',
+      path: 'Hom',
     },
 
     {
       id: 2,
       title: 'Coins',
       url: '/',
+      path: 'home',
     },
 
     {
       id: 3,
       title: 'New Coins',
-      url: '/',
+      url: '/new-coins',
+      path: 'Homeddddd',
     },
 
     {
       id: 4,
       title: 'Trending',
-      url: '/',
+      url: '/trending',
+      path: 'trending',
     },
 
     {
       id: 5,
       title: 'NFT',
-      url: '/',
+      url: '/nft',
+      path: 'nft',
     },
   ];
   return (
     <div className='my-[40px]'>
       <div className='flex items-center gap-[64px] font-medium'>
         {menuItems.map((item) => {
-          const { title, id } = item;
-          return <div key={id}>{title}</div>;
+          const { title, id, url } = item;
+          return (
+            <Link
+              href={url}
+              key={id}
+              className={`  ${active === item.path ? 'active ' : null}`}
+            >
+              {title}
+            </Link>
+          );
         })}
       </div>
     </div>

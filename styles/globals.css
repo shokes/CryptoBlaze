@@ -12,6 +12,7 @@
   --extraLightBlue: #e7f5ff;
   --lightBlue: #a5d8ff;
   --hover: #1c7ed6;
+  /* --blue: #1864ab; */
   --blue: #1864ab;
   --green: #2f9e44;
   --red: #e03131;
@@ -41,4 +42,10 @@ th {
 
 tr {
   padding: 512rem;
+}
+
+.active {
+  font-weight: 700;
+  box-shadow: 0 3px #1864ab;
+  transition: background 0.1s, box-shadow 0.3s, color 0.1s;
 }

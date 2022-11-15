@@ -6,12 +6,12 @@ import { FiGithub, FiTwitter } from 'react-icons/fi';
 
 const Footer = () => {
   return (
-    <footer className='pt-[4rem] pb-[2rem]'>
+    <footer className='pt-[64px] pb-[15px]'>
       <div
         className='flex
-     justify-between items-base mb-[4rem] '
+     justify-between items-base mb-[64px] '
       >
-        <div className='w-[28rem]'>
+        <div className='w-[448px]'>
           <Link
             href='/'
             className='flex gap-2 mb-3 items-center font-bold text-xl'
@@ -60,11 +60,6 @@ const Footer = () => {
           <FiGithub className='text-blue' />
         </a>
       </div>
-      {/* <div className='text-center text-sm'>
-        <p>
-          Built with ❤ <span className='font-semibold'>by Shokes</span>{' '}
-        </p>
-      </div> */}
     </footer>
   );
 };

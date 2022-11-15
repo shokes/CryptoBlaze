@@ -1,9 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import homeReducer from '../redux/features/homeSlice';
+import trendingReducer from '../redux/features/trendingSlice';
+import NftsReducer from '../redux/features/nftsSlice';
 
 export const store = configureStore({
   reducer: {
     home: homeReducer,
+    trending: trendingReducer,
+    nfts: NftsReducer,
   },
 });
 

@@ -1,5 +1,3 @@
-export default interface MenuTypes {
-  id: number;
-  title: string;
-  url: string;
+export default interface MenuType {
+  active: string;
 }
