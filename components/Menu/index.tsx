@@ -2,6 +2,7 @@ import React from 'react';
 import MenuItemsTypes from '../../interfaces/menuItemsTypes';
 import MenuType from '../../interfaces/menuTypes';
 import Link from 'next/link';
+import { BsFillStarFill } from 'react-icons/bs';
 
 const Menu = ({ active }: MenuType) => {
   const menuItems: MenuItemsTypes[] = [
@@ -49,8 +50,13 @@ const Menu = ({ active }: MenuType) => {
             <Link
               href={url}
               key={id}
-              className={`  ${active === item.path ? 'active ' : null}`}
+              className={` flex items-center gap-1  ${
+                active === item.path ? 'active ' : null
+              }`}
             >
+              {title === 'Portfolio' ? (
+                <BsFillStarFill className='text-[#fc6]' />
+              ) : null}{' '}
               {title}
             </Link>
           );

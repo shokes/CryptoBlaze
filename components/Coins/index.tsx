@@ -2,6 +2,7 @@ import { RiStarSLine } from 'react-icons/ri';
 import { Sparklines, SparklinesLine } from 'react-sparklines';
 import Image from 'next/image';
 import CoinsTypes from '../../interfaces/coinsTypes';
+import Link from 'next/link';
 
 const Coins = ({ cryptos, searchValue, inputHandler }: CoinsTypes) => {
   return (
@@ -38,6 +39,7 @@ const Coins = ({ cryptos, searchValue, inputHandler }: CoinsTypes) => {
           <tbody>
             {cryptos?.map((item, index) => {
               const {
+                id,
                 name,
                 image,
                 symbol,
@@ -62,7 +64,12 @@ const Coins = ({ cryptos, searchValue, inputHandler }: CoinsTypes) => {
                       height={30}
                       className='w-auto h-auto'
                     />
-                    {name}
+                    <Link
+                      href={`coins/${id}`}
+                      className='hover:underline underline-offset-2'
+                    >
+                      {name}
+                    </Link>
                   </td>
                   <td className='uppercase text-sm'>{symbol}</td>
                   <td>${price.toLocaleString()}</td>

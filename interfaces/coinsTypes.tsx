@@ -1,5 +1,6 @@
 export default interface CoinsTypes {
   cryptos: {
+    id: string;
     name: string;
     image: string;
     symbol: string;
