@@ -48,9 +48,6 @@ const Home: NextPage = () => {
 
   return (
     <div>
-      <Head>
-        <title>CryptoBlaze</title>
-      </Head>
       <Layout activePage={activePage}>
         <Coins
           cryptos={coins}

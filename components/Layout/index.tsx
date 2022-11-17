@@ -9,7 +9,10 @@ const Layout = ({ children, activePage }: LayoutTypes) => {
   return (
     <div className='container'>
       <Head>
-        <title>CryptoBlaze - {activePage}</title>
+        <title>
+          CryptoBlaze -{' '}
+          {activePage.charAt(0).toUpperCase() + activePage.slice(1)}
+        </title>
       </Head>
       <Navigation />
       <Menu active={activePage} />

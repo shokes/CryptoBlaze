@@ -191,7 +191,7 @@ const SingleCoin = ({ coin }: SingleCoinTypes) => {
                   }}
                 ></p>
               ) : (
-                'Not available at this time'
+                'Not available at this'
               )}
             </div>
           </div>

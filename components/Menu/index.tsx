@@ -50,8 +50,8 @@ const Menu = ({ active }: MenuType) => {
             <Link
               href={url}
               key={id}
-              className={` flex items-center gap-1  ${
-                active === item.path ? 'active ' : null
+              className={` flex items-center gap-2  ${
+                active === item.path ? 'active ' : 'hover'
               }`}
             >
               {title === 'Portfolio' ? (

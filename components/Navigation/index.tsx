@@ -118,9 +118,9 @@ const Navigation = () => {
         <div>
           <BsFillMoonFill />
         </div>
-        <div>Portfolio</div>
+        <Link href='/portfolio'>Portfolio</Link>
         <div className='hover:text-blue cursor-pointer duration-150 ease-in-out'>
-          Sign In
+          Login
         </div>
         <button className='bg-blue py-1 px-3 text-[#fff] rounded hover:bg-hover duration-150 ease-in-out'>
           Sign Up

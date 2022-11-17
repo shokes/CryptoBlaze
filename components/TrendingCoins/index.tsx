@@ -20,7 +20,7 @@ const TrendingCoins = ({ cryptos }: TrendingCoinsTypes) => {
               <Link
                 href={`coins/${id}`}
                 key={slug}
-                className='flex justify-between items-center'
+                className='flex justify-between items-center trending'
               >
                 <div className='flex items-center gap-3 text-sm'>
                   <Image alt={name} src={large} width={50} height={50} />

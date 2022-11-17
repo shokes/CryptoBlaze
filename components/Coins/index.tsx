@@ -21,8 +21,8 @@ const Coins = ({ cryptos, searchValue, inputHandler }: CoinsTypes) => {
           />
         </div>
 
-        <table>
-          <thead>
+        <table className=''>
+          <thead className='sticky top-0 bg-extraLightBlue'>
             <tr>
               <th></th>
               <th>#</th>
