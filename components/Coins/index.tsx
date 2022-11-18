@@ -53,7 +53,7 @@ const Coins = ({ cryptos, searchValue, inputHandler }: CoinsTypes) => {
               return (
                 <tr key={index + 1}>
                   <td>
-                    <RiStarSLine className='w-[1.5rem] h-[1.5rem]' />
+                    <RiStarSLine className='w-[24px] h-[24px]' />
                   </td>
                   <td>{index + 1}</td>
                   <td className='flex gap-3 items-center'>

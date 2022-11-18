@@ -26,23 +26,38 @@ const Footer = () => {
         </div>
         <div className='flex flex-col'>
           <h2 className='mb-3 font-bold'>EXPLORE</h2>
-          <Link href='/coins/bitcoin' className='mb-1 text-sm'>
+          <Link
+            href='/coins/bitcoin'
+            className='mb-1 text-sm hover:underline underline-offset-2'
+          >
             BITCOIN PRICE
           </Link>
-          <Link href='/coins/ethereum' className='mb-1 text-sm'>
+          <Link
+            href='/coins/ethereum'
+            className='mb-1 text-sm hover:underline underline-offset-2'
+          >
             ETHEREUM PRICE
           </Link>
-          <Link href='/coins/binancecoin' className='text-sm'>
+          <Link
+            href='/coins/binancecoin'
+            className='text-sm hover:underline underline-offset-2'
+          >
             BNB PRICE
           </Link>
         </div>
 
         <div className='flex flex-col'>
           <h2 className='mb-3 font-bold'>NFTS</h2>
-          <Link href='/nft' className='mb-1 text-sm'>
+          <Link
+            href='/nft'
+            className='mb-1 text-sm hover:underline underline-offset-2'
+          >
             NFTS
           </Link>
-          <Link href='/trending' className='text-sm'>
+          <Link
+            href='/trending'
+            className='text-sm hover:underline underline-offset-2'
+          >
             TRENDING COINS
           </Link>
         </div>

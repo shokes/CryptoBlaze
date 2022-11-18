@@ -3,8 +3,14 @@ import Logo from '../../public/Logo/CryptoBlazeLogo.png';
 import Image from 'next/image';
 import Link from 'next/link';
 import NavigationTypes from '../../interfaces/navigationTypes';
+import LoginModal from '../LoginModal';
+import SignUpModal from '../SignUpModal';
+import { useState } from 'react';
 
 const Navigation = () => {
+  const [loginModal, setLoginModal] = useState(false);
+  const [signUpModal, setSignUpModal] = useState(false);
+
   const navItems: NavigationTypes[] = [
     {
       id: 1,
@@ -72,7 +78,7 @@ const Navigation = () => {
   ];
 
   return (
-    <section>
+    <section className='relative'>
       <div className='flex items-center gap-5 justify-between pt-5 font-medium'>
         <Link href='/' className='flex gap-2 items-center font-bold text-xl'>
           {' '}
@@ -119,13 +125,27 @@ const Navigation = () => {
           <BsFillMoonFill />
         </div>
         <Link href='/portfolio'>Portfolio</Link>
-        <div className='hover:text-blue cursor-pointer duration-150 ease-in-out'>
+        <button
+          className='hover:text-blue cursor-pointer duration-150 ease-in-out'
+          onClick={() => {
+            setSignUpModal(false);
+            setLoginModal(true);
+          }}
+        >
           Login
-        </div>
-        <button className='bg-blue py-1 px-3 text-[#fff] rounded hover:bg-hover duration-150 ease-in-out'>
+        </button>
+        <button
+          className='bg-blue py-1 px-3 text-[#fff] rounded hover:bg-hover duration-150 ease-in-out'
+          onClick={() => {
+            setSignUpModal(true);
+            setLoginModal(false);
+          }}
+        >
           Sign Up
         </button>
       </div>
+      {loginModal && <LoginModal setLoginModal={setLoginModal} />}
+      {signUpModal && <SignUpModal setSignUpModal={setSignUpModal} />}
     </section>
   );
 };

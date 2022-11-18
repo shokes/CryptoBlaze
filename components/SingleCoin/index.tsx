@@ -11,7 +11,6 @@ import { useRouter } from 'next/router';
 const SingleCoin = ({ coin }: SingleCoinTypes) => {
   const router = useRouter();
   if (Object.entries(coin).length > 0) {
-    console.log(coin);
     const {
       name,
       symbol,
@@ -191,7 +190,7 @@ const SingleCoin = ({ coin }: SingleCoinTypes) => {
                   }}
                 ></p>
               ) : (
-                'Not available at this'
+                'Not available at this moment...'
               )}
             </div>
           </div>

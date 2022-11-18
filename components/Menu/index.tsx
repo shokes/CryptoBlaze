@@ -24,7 +24,7 @@ const Menu = ({ active }: MenuType) => {
       id: 3,
       title: 'New Coins',
       url: '/new-coins',
-      path: 'Homeddddd',
+      path: 'new-coins',
     },
 
     {
