@@ -6,8 +6,13 @@ import Footer from '../components/Footer';
 import Head from 'next/head';
 import WebShot from '../public/Images/webshot.png';
 import Image from 'next/image';
+import { openLoginModal } from '../redux/features/homeSlice';
+import { openSignUpModal } from '../redux/features/homeSlice';
+import { useDispatch } from 'react-redux';
 
-const portfolio = () => {
+const Portfolio = () => {
+  const dispatch = useDispatch();
+
   return (
     <section>
       <Head>
@@ -39,10 +44,20 @@ const portfolio = () => {
               reliable portfolio tracker that you can rely on
             </p>
             <div className='flex items-center gap-3 mb-5'>
-              <button className='bg-blue py-2 w-[112px] px-6 border border-blue text-[#fff] rounded hover:bg-hover duration-150 ease-in-out'>
+              <button
+                className='bg-blue py-2 w-[112px] px-6 border border-blue text-[#fff] rounded hover:bg-hover duration-150 ease-in-out'
+                onClick={() => {
+                  dispatch(openSignUpModal());
+                }}
+              >
                 Sign Up
               </button>
-              <button className='hover:text-blue  w-[112px] border py-2 px-6 rounded border-blue cursor-pointer duration-150 ease-in-out'>
+              <button
+                className='hover:text-blue hover:border-[#000]  w-[112px] border py-2 px-6 rounded border-blue cursor-pointer duration-150 ease-in-out'
+                onClick={() => {
+                  dispatch(openLoginModal());
+                }}
+              >
                 Login
               </button>
             </div>
@@ -65,4 +80,4 @@ const portfolio = () => {
   );
 };
 
-export default portfolio;
+export default Portfolio;

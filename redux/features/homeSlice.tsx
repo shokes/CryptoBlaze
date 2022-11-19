@@ -4,6 +4,8 @@ import requests from '../../requests/requests';
 const initialState = {
   cryptos: [],
   isLoading: false,
+  loginModal: false,
+  signUpModal: false,
 };
 
 // fetching cryptos to be displayed on home
@@ -20,7 +22,27 @@ export const getCryptos: any = createAsyncThunk(
 const homeSlice = createSlice({
   name: 'home',
   initialState,
-  reducers: {},
+  reducers: {
+    openLoginModal: (state) => {
+      state.signUpModal = false;
+      state.loginModal = true;
+    },
+
+    closeLoginModal: (state) => {
+      // state.signUpModal = false;
+      state.loginModal = false;
+    },
+
+    openSignUpModal: (state) => {
+      state.signUpModal = true;
+      state.loginModal = false;
+    },
+
+    closeSignUpModal: (state) => {
+      state.signUpModal = false;
+      // state.loginModal = false;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getCryptos.pending, (state) => {
       state.isLoading = true;
@@ -34,5 +56,12 @@ const homeSlice = createSlice({
       });
   },
 });
+
+export const {
+  openLoginModal,
+  closeLoginModal,
+  openSignUpModal,
+  closeSignUpModal,
+} = homeSlice.actions;
 
 export default homeSlice.reducer;

@@ -5,11 +5,16 @@ import Link from 'next/link';
 import NavigationTypes from '../../interfaces/navigationTypes';
 import LoginModal from '../LoginModal';
 import SignUpModal from '../SignUpModal';
-import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../../redux/store';
+import { openLoginModal } from '../../redux/features/homeSlice';
+import { openSignUpModal } from '../../redux/features/homeSlice';
 
 const Navigation = () => {
-  const [loginModal, setLoginModal] = useState(false);
-  const [signUpModal, setSignUpModal] = useState(false);
+  const { loginModal, signUpModal } = useSelector(
+    (store: RootState) => store.home
+  );
+  const dispatch = useDispatch();
 
   const navItems: NavigationTypes[] = [
     {
@@ -124,12 +129,16 @@ const Navigation = () => {
         <div>
           <BsFillMoonFill />
         </div>
-        <Link href='/portfolio'>Portfolio</Link>
+        <Link
+          href='/portfolio'
+          className='hover:text-blue duration-150 ease-in-out'
+        >
+          Portfolio
+        </Link>
         <button
           className='hover:text-blue cursor-pointer duration-150 ease-in-out'
           onClick={() => {
-            setSignUpModal(false);
-            setLoginModal(true);
+            dispatch(openLoginModal());
           }}
         >
           Login
@@ -137,15 +146,16 @@ const Navigation = () => {
         <button
           className='bg-blue py-1 px-3 text-[#fff] rounded hover:bg-hover duration-150 ease-in-out'
           onClick={() => {
-            setSignUpModal(true);
-            setLoginModal(false);
+            dispatch(openSignUpModal());
           }}
         >
           Sign Up
         </button>
       </div>
-      {loginModal && <LoginModal setLoginModal={setLoginModal} />}
-      {signUpModal && <SignUpModal setSignUpModal={setSignUpModal} />}
+
+      {loginModal && <LoginModal />}
+
+      {signUpModal && <SignUpModal />}
     </section>
   );
 };
