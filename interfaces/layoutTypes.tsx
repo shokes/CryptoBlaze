@@ -1,4 +1,4 @@
 export default interface LayoutTypes {
-  activePage: string;
+  activePage?: string;
   children: React.ReactNode;
 }

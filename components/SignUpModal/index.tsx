@@ -6,9 +6,13 @@ import Image from 'next/image';
 import { closeSignUpModal } from '../../redux/features/homeSlice';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
+import { useAuth } from '../../context/AuthContext';
 
 const SignUpModal = () => {
   const dispatch = useDispatch();
+
+  const { user, signup } = useAuth();
+  console.log(user);
 
   const [data, setData] = useState({
     email: '',
@@ -17,6 +21,13 @@ const SignUpModal = () => {
 
   const handleSignup = async (e: any) => {
     e.preventDefault();
+
+    try {
+      await signup(data.email, data.password);
+    } catch (error) {
+      console.log(error);
+    }
+
     console.log(data);
   };
 

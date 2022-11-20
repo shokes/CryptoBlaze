@@ -6,10 +6,12 @@ import Image from 'next/image';
 import { closeLoginModal } from '../../redux/features/homeSlice';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
+import { useAuth } from '../../context/AuthContext';
 
-// to fix typings later
 const LoginModal = () => {
   const dispatch = useDispatch();
+
+  const { login, googleSignIn } = useAuth();
 
   const [data, setData] = useState({
     email: '',
@@ -18,7 +20,12 @@ const LoginModal = () => {
 
   const handleLogin = async (e: any) => {
     e.preventDefault();
-    console.log(data);
+
+    try {
+      await login(data.email, data.password);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -68,7 +75,10 @@ const LoginModal = () => {
               Login
             </button>
             <span className='text-center'>Or</span>
-            <button className='flex items-center gap-3 justify-center border py-2 hover:text-blue   border-blue hover:border-[#000] duration-150 ease-in-out rounded w-full'>
+            <button
+              className='flex items-center gap-3 justify-center border py-2 hover:text-blue   border-blue hover:border-[#000] duration-150 ease-in-out rounded w-full'
+              // onClick={googleSignIn}
+            >
               <Image
                 src={GoogleIcon}
                 width={20}

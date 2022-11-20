@@ -3,8 +3,11 @@ import { Sparklines, SparklinesLine } from 'react-sparklines';
 import Image from 'next/image';
 import CoinsTypes from '../../interfaces/coinsTypes';
 import Link from 'next/link';
+import { addToPortfolio } from '../../redux/features/homeSlice';
+import { useDispatch } from 'react-redux';
 
 const Coins = ({ cryptos, searchValue, inputHandler }: CoinsTypes) => {
+  const dispatch = useDispatch();
   return (
     <section>
       <div>
@@ -25,7 +28,7 @@ const Coins = ({ cryptos, searchValue, inputHandler }: CoinsTypes) => {
           <thead className='sticky top-0 bg-extraLightBlue'>
             <tr>
               <th></th>
-              <th>#</th>
+              <th>Rank</th>
               <th>Coin</th>
               <th></th>
               <th>Price</th>
@@ -37,7 +40,7 @@ const Coins = ({ cryptos, searchValue, inputHandler }: CoinsTypes) => {
           </thead>
 
           <tbody>
-            {cryptos?.map((item, index) => {
+            {cryptos?.map((item) => {
               const {
                 id,
                 name,
@@ -48,14 +51,18 @@ const Coins = ({ cryptos, searchValue, inputHandler }: CoinsTypes) => {
                 total_volume,
                 market_cap,
                 sparkline_in_7d,
+                market_cap_rank,
               } = item;
 
               return (
-                <tr key={index + 1}>
+                <tr key={market_cap_rank}>
                   <td>
-                    <RiStarSLine className='w-[24px] h-[24px]' />
+                    <RiStarSLine
+                      className='w-[24px] h-[24px] cursor-pointer'
+                      onClick={() => dispatch(addToPortfolio(name))}
+                    />
                   </td>
-                  <td>{index + 1}</td>
+                  <td>{market_cap_rank}</td>
                   <td className='flex gap-3 items-center'>
                     <Image
                       src={image}

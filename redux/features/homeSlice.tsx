@@ -1,11 +1,13 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, current } from '@reduxjs/toolkit';
 import requests from '../../requests/requests';
+import StateTypes from '../../interfaces/stateTypes';
 
-const initialState = {
+const initialState: StateTypes = {
   cryptos: [],
   isLoading: false,
   loginModal: false,
   signUpModal: false,
+  portfolio: [],
 };
 
 // fetching cryptos to be displayed on home
@@ -42,6 +44,20 @@ const homeSlice = createSlice({
       state.signUpModal = false;
       // state.loginModal = false;
     },
+
+    addToPortfolio: (state, action) => {
+      const data: any = state.cryptos.find(
+        (item: any) => item.name === action.payload
+      );
+      if (state.portfolio.some((item: any) => item.name === data.name)) return;
+      state.portfolio.push(data);
+    },
+
+    removeFromPortfolio: (state, action) => {
+      state.portfolio = state.portfolio.filter(
+        (crypto) => crypto.name !== action.payload
+      );
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getCryptos.pending, (state) => {
@@ -62,6 +78,8 @@ export const {
   closeLoginModal,
   openSignUpModal,
   closeSignUpModal,
+  addToPortfolio,
+  removeFromPortfolio,
 } = homeSlice.actions;
 
 export default homeSlice.reducer;

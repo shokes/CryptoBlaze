@@ -3,11 +3,10 @@ import {
   closeLoginModal,
   closeSignUpModal,
 } from '../../redux/features/homeSlice';
-
+import LayoutTypes from '../../interfaces/layoutTypes';
 import { useDispatch } from 'react-redux';
 
-// fix the typings later
-const ModalLayout = ({ children }: any) => {
+const ModalLayout = ({ children }: LayoutTypes) => {
   const dispatch = useDispatch();
   return (
     <div

@@ -9,6 +9,7 @@ export default interface CoinsTypes {
     total_volume: number;
     market_cap: number;
     sparkline_in_7d: { price: [] };
+    market_cap_rank: number;
   }[];
   inputHandler: () => void;
   searchValue: React.RefObject<HTMLInputElement>;

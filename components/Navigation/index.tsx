@@ -9,12 +9,15 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { openLoginModal } from '../../redux/features/homeSlice';
 import { openSignUpModal } from '../../redux/features/homeSlice';
+import { useAuth } from '../../context/AuthContext';
 
 const Navigation = () => {
   const { loginModal, signUpModal } = useSelector(
     (store: RootState) => store.home
   );
   const dispatch = useDispatch();
+
+  const { user, logout } = useAuth();
 
   const navItems: NavigationTypes[] = [
     {
@@ -135,22 +138,44 @@ const Navigation = () => {
         >
           Portfolio
         </Link>
-        <button
-          className='hover:text-blue cursor-pointer duration-150 ease-in-out'
-          onClick={() => {
-            dispatch(openLoginModal());
-          }}
-        >
-          Login
-        </button>
-        <button
-          className='bg-blue py-1 px-3 text-[#fff] rounded hover:bg-hover duration-150 ease-in-out'
-          onClick={() => {
-            dispatch(openSignUpModal());
-          }}
-        >
-          Sign Up
-        </button>
+        {user ? (
+          <div className='flex items-center gap-7'>
+            <Link
+              href='/account'
+              className='hover:text-blue cursor-pointer duration-150 ease-in-out'
+            >
+              Account
+            </Link>
+
+            <button
+              className='bg-blue py-1 px-3 text-[#fff] rounded hover:bg-hover duration-150 ease-in-out'
+              onClick={() => {
+                logout();
+              }}
+            >
+              Logout
+            </button>
+          </div>
+        ) : (
+          <div className='flex items-center gap-7'>
+            <button
+              className='hover:text-blue cursor-pointer duration-150 ease-in-out'
+              onClick={() => {
+                dispatch(openLoginModal());
+              }}
+            >
+              Login
+            </button>
+            <button
+              className='bg-blue py-1 px-3 text-[#fff] rounded hover:bg-hover duration-150 ease-in-out'
+              onClick={() => {
+                dispatch(openSignUpModal());
+              }}
+            >
+              Sign Up
+            </button>
+          </div>
+        )}
       </div>
 
       {loginModal && <LoginModal />}
