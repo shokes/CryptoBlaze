@@ -10,9 +10,10 @@ import { useAuth } from '../../context/AuthContext';
 
 const SignUpModal = () => {
   const dispatch = useDispatch();
-
-  const { user, signup } = useAuth();
-  console.log(user);
+  const [passwordLengthError, setPasswordLengthError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const { signup } = useAuth();
+  // console.log(user);
 
   const [data, setData] = useState({
     email: '',
@@ -22,13 +23,16 @@ const SignUpModal = () => {
   const handleSignup = async (e: any) => {
     e.preventDefault();
 
+    if (data.password.length < 7) {
+      setPasswordLengthError(true);
+    }
+    setPasswordLengthError(false);
     try {
       await signup(data.email, data.password);
-    } catch (error) {
-      console.log(error);
+    } catch (e: any) {
+      console.log(e.message);
+      setErrorMessage(e.message);
     }
-
-    console.log(data);
   };
 
   return (
@@ -67,7 +71,12 @@ const SignUpModal = () => {
               className='h-[42px] rounded border-blue border p-2'
             />
           </div>
-          <div className='flex flex-col gap-2 mb-6'>
+
+          <div
+            className={`flex flex-col gap-2 ${
+              errorMessage || passwordLengthError || 'mb-6'
+            }`}
+          >
             <label htmlFor='Password'>Password</label>
             <input
               onChange={(e: any) =>
@@ -83,7 +92,14 @@ const SignUpModal = () => {
               className='h-[42px] rounded border border-blue p-2'
             />
           </div>
-
+          {passwordLengthError && (
+            <p className='my-3 text-red text-xs'>
+              Password should not be less than six characters
+            </p>
+          )}
+          {errorMessage && (
+            <p className='my-3 text-red text-xs'>{errorMessage}</p>
+          )}
           <button
             className='bg-blue py-2 w-full border-blue border rounded text-[#fff] hover:bg-hover mb-6 duration-150 ease-in-out'
             type='submit'

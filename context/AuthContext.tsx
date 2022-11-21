@@ -59,19 +59,6 @@ export const AuthContextProvider = ({
     await signOut(auth);
   };
 
-  // const signInWithGoogle = async () => {
-  //   const provider = new GoogleAuthProvider();
-  //   provider.setCustomParameters({
-  //     prompt: 'select_account',
-  //   });
-
-  //   try {
-  //     await signInWithPopup(auth, provider);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
   const signInGoogle = async () => {
     const provider = new GoogleAuthProvider();
     try {

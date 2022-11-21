@@ -12,6 +12,7 @@ const LoginModal = () => {
   const dispatch = useDispatch();
 
   const { login, googleSignIn } = useAuth();
+  const [errorMessage, setErrorMessage] = useState('');
 
   const [data, setData] = useState({
     email: '',
@@ -23,8 +24,9 @@ const LoginModal = () => {
 
     try {
       await login(data.email, data.password);
-    } catch (error) {
-      console.log(error);
+    } catch (e: any) {
+      console.log(e.message);
+      setErrorMessage(e.message);
     }
   };
 
@@ -51,7 +53,9 @@ const LoginModal = () => {
               className='h-[42px] rounded border-blue border p-2'
             />
           </div>
-          <div className='flex flex-col gap-2 mb-6'>
+          <div
+            className={`flex flex-col gap-2 ${errorMessage ? null : 'mb-6'}`}
+          >
             <label htmlFor='Password'>Password</label>
             <input
               onChange={(e: any) =>
@@ -67,6 +71,9 @@ const LoginModal = () => {
               className='h-[42px] rounded border border-blue p-2'
             />
           </div>
+          {errorMessage && (
+            <p className='my-3 text-red text-xs'>{errorMessage}</p>
+          )}
           <div className='flex flex-col gap-3 mb-[32px]'>
             <button
               className='bg-blue py-2 w-full border-blue border rounded text-[#fff] hover:bg-hover  duration-150 ease-in-out'
@@ -77,7 +84,7 @@ const LoginModal = () => {
             <span className='text-center'>Or</span>
             <button
               className='flex items-center gap-3 justify-center border py-2 hover:text-blue   border-blue hover:border-[#000] duration-150 ease-in-out rounded w-full'
-              // onClick={googleSignIn}
+              onClick={googleSignIn}
             >
               <Image
                 src={GoogleIcon}
