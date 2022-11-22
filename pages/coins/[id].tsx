@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import Layout from '../../components/Layout';
 import SingleCoin from '../../components/SingleCoin';
-import CryptoTypes from '../../interfaces/cyptoTypes';
+import CryptoTypes from '../../interfaces/cryptoTypes';
 
 const SingleCoinPage = () => {
   const [crypto, setCrypto] = useState<CryptoTypes>({} as CryptoTypes);

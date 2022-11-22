@@ -10,7 +10,6 @@ import { openLoginModal } from '../redux/features/homeSlice';
 import { openSignUpModal } from '../redux/features/homeSlice';
 import { useDispatch } from 'react-redux';
 import { useAuth } from '../context/AuthContext';
-import { isButtonElement } from 'react-router-dom/dist/dom';
 
 const Portfolio = () => {
   const dispatch = useDispatch();

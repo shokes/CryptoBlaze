@@ -1,8 +1,6 @@
-import React from 'react';
 import type { NextPage } from 'next';
 import Coins from '../components/Coins';
 import Layout from '../components/Layout';
-import Head from 'next/head';
 import { getCryptos } from '../redux/features/homeSlice';
 import { useEffect, useState, useRef } from 'react';
 import { RootState } from '../redux/store';
@@ -12,7 +10,23 @@ const Home: NextPage = () => {
   const dispatch = useDispatch();
   const { cryptos } = useSelector((store: RootState) => store.home);
   const [searchCrypto, setSearchCrypto] = useState<string>('');
-  const [coins, setCoins] = useState([]);
+  const [coins, setCoins] = useState<
+    {
+      id: string;
+      name: string;
+      image: string;
+      symbol: string;
+      current_price: number;
+      price_change_percentage_24h: number;
+      total_volume: number;
+      market_cap: number;
+      sparkline_in_7d: {
+        price: [];
+      };
+      market_cap_rank: number;
+    }[]
+  >([]);
+
   const searchValue = useRef<HTMLInputElement>(null);
   const activePage = 'home';
 

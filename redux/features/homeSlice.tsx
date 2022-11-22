@@ -31,7 +31,7 @@ const homeSlice = createSlice({
     },
 
     closeLoginModal: (state) => {
-      // state.signUpModal = false;
+   
       state.loginModal = false;
     },
 
@@ -42,20 +42,20 @@ const homeSlice = createSlice({
 
     closeSignUpModal: (state) => {
       state.signUpModal = false;
-      // state.loginModal = false;
+     
     },
 
     addToPortfolio: (state, action) => {
-      const data: any = state.cryptos.find(
-        (item: any) => item.name === action.payload
-      );
+  
+      let data = action.payload;
+
       if (state.portfolio.some((item: any) => item.name === data.name)) return;
       state.portfolio.push(data);
     },
 
     removeFromPortfolio: (state, action) => {
       state.portfolio = state.portfolio.filter(
-        (crypto) => crypto.name !== action.payload
+        (crypto) => crypto.name !== action.payload.name
       );
     },
   },

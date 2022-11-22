@@ -24,7 +24,6 @@ const Account = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const { portfolio } = useSelector((store: RootState) => store.home);
-  console.log(portfolio);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -47,8 +46,8 @@ const Account = () => {
             My Portfolio
           </h2>
           <div>
-            <table className=''>
-              <thead className='sticky top-0 bg-extraLightBlue'>
+            <table>
+              <thead className='sticky top-0 bg-extraLightBlue z-30'>
                 <tr>
                   <th>Rank</th>
                   <th>Coin</th>
@@ -63,7 +62,7 @@ const Account = () => {
               </thead>
 
               <tbody>
-                {portfolio?.map((item) => {
+                {portfolio?.map((crypto) => {
                   const {
                     id,
                     name,
@@ -75,7 +74,7 @@ const Account = () => {
                     market_cap,
                     sparkline_in_7d,
                     market_cap_rank,
-                  } = item;
+                  } = crypto;
 
                   return (
                     <tr key={market_cap_rank}>
@@ -96,7 +95,7 @@ const Account = () => {
                         </Link>
                       </td>
                       <td className='uppercase text-sm'>{symbol}</td>
-                      <td>${price.toLocaleString()}</td>
+                      <td>{price ? '$' + price.toLocaleString() : 'N/A'}</td>
                       <td
                         className={`${
                           price_change_percentage_24h > 0
@@ -109,18 +108,25 @@ const Account = () => {
                       <td>${total_volume.toLocaleString()}</td>
                       <td>${market_cap.toLocaleString()}</td>
                       <td>
-                        <Sparklines data={sparkline_in_7d.price}>
-                          <SparklinesLine color='#1864ab' />
-                        </Sparklines>
+                        {sparkline_in_7d.price ? (
+                          <Sparklines data={sparkline_in_7d.price}>
+                            <SparklinesLine color='#1864ab' />
+                          </Sparklines>
+                        ) : (
+                          'N/A'
+                        )}
                       </td>
 
-                      {/* // to fix later */}
-                      <div className='relative'>
-                        <AiFillDelete
-                          className='text-right w-[2rem] absolute -top-[32px] h-[32px] right-1/2 cursor-pointer'
-                          onClick={() => dispatch(removeFromPortfolio(name))}
-                        />
-                      </div>
+                      <td>
+                        <div className='relative'>
+                          <AiFillDelete
+                            className=' w-[32px] absolute -top-[32px] h-[32px] right-1/2 cursor-pointer'
+                            onClick={() =>
+                              dispatch(removeFromPortfolio(crypto))
+                            }
+                          />
+                        </div>
+                      </td>
                     </tr>
                   );
                 })}

@@ -3,7 +3,10 @@ import ModalLayout from '../ModalLayout';
 import { GrClose } from 'react-icons/gr';
 import GoogleIcon from '../../public/Logo/images.png';
 import Image from 'next/image';
-import { closeSignUpModal } from '../../redux/features/homeSlice';
+import {
+  closeSignUpModal,
+  openLoginModal,
+} from '../../redux/features/homeSlice';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
@@ -13,7 +16,6 @@ const SignUpModal = () => {
   const [passwordLengthError, setPasswordLengthError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const { signup } = useAuth();
-  // console.log(user);
 
   const [data, setData] = useState({
     email: '',
@@ -110,7 +112,12 @@ const SignUpModal = () => {
 
         <p className='text-center text-sm'>
           Already have an account yet?{' '}
-          <span className='text-blue cursor-pointer'>Login</span>
+          <span
+            className='text-blue cursor-pointer'
+            onClick={() => dispatch(openLoginModal())}
+          >
+            Login
+          </span>
         </p>
         <span
           className=' right-0 -top-[32px] absolute cursor-pointer'

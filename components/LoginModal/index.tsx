@@ -3,7 +3,10 @@ import ModalLayout from '../ModalLayout';
 import { GrClose } from 'react-icons/gr';
 import GoogleIcon from '../../public/Logo/images.png';
 import Image from 'next/image';
-import { closeLoginModal } from '../../redux/features/homeSlice';
+import {
+  closeLoginModal,
+  openSignUpModal,
+} from '../../redux/features/homeSlice';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
@@ -107,7 +110,12 @@ const LoginModal = () => {
         </span>
         <p className='text-center text-sm'>
           Don&apos;t have an account yet?{' '}
-          <span className='text-blue cursor-pointer'>Sign Up</span>
+          <span
+            className='text-blue cursor-pointer'
+            onClick={() => dispatch(openSignUpModal())}
+          >
+            Sign Up
+          </span>
         </p>
       </div>
     </ModalLayout>

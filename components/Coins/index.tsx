@@ -1,13 +1,22 @@
-import { RiStarSLine } from 'react-icons/ri';
+import { RiStarSLine, RiStarSFill } from 'react-icons/ri';
 import { Sparklines, SparklinesLine } from 'react-sparklines';
 import Image from 'next/image';
 import CoinsTypes from '../../interfaces/coinsTypes';
 import Link from 'next/link';
-import { addToPortfolio } from '../../redux/features/homeSlice';
-import { useDispatch } from 'react-redux';
+import {
+  addToPortfolio,
+  openLoginModal,
+  removeFromPortfolio,
+} from '../../redux/features/homeSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { useAuth } from '../../context/AuthContext';
+import { RootState } from '../../redux/store';
 
 const Coins = ({ cryptos, searchValue, inputHandler }: CoinsTypes) => {
+  const { user } = useAuth();
   const dispatch = useDispatch();
+  const { portfolio } = useSelector((store: RootState) => store.home);
+
   return (
     <section>
       <div>
@@ -40,7 +49,7 @@ const Coins = ({ cryptos, searchValue, inputHandler }: CoinsTypes) => {
           </thead>
 
           <tbody>
-            {cryptos?.map((item) => {
+            {cryptos?.map((crypto) => {
               const {
                 id,
                 name,
@@ -52,15 +61,29 @@ const Coins = ({ cryptos, searchValue, inputHandler }: CoinsTypes) => {
                 market_cap,
                 sparkline_in_7d,
                 market_cap_rank,
-              } = item;
+              } = crypto;
 
               return (
                 <tr key={market_cap_rank}>
                   <td>
-                    <RiStarSLine
-                      className='w-[24px] h-[24px] cursor-pointer'
-                      onClick={() => dispatch(addToPortfolio(name))}
-                    />
+                    {user ? (
+                      portfolio.find((item) => item.name === name) ? (
+                        <RiStarSFill
+                          className='w-[24px] h-[24px] cursor-pointer'
+                          onClick={() => dispatch(removeFromPortfolio(crypto))}
+                        />
+                      ) : (
+                        <RiStarSLine
+                          className='w-[24px] h-[24px] cursor-pointer'
+                          onClick={() => dispatch(addToPortfolio(crypto))}
+                        />
+                      )
+                    ) : (
+                      <RiStarSLine
+                        className='w-[24px] h-[24px] cursor-pointer'
+                        onClick={() => dispatch(openLoginModal())}
+                      />
+                    )}
                   </td>
                   <td>{market_cap_rank}</td>
                   <td className='flex gap-3 items-center'>

@@ -69,10 +69,6 @@ export const AuthContextProvider = ({
     }
   };
 
-  // const signInGoogle = () => {
-  //   signInWithGoogle().then(() => router.push('/account'));
-  // };
-
   const googleSignIn = () => {
     signInGoogle()
       .then((res) => {

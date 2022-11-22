@@ -2,23 +2,37 @@ import React from 'react';
 import Image from 'next/image';
 import SingleCoinTypes from '../../interfaces/singleCoinTypes';
 import { Sparklines, SparklinesLine } from 'react-sparklines';
-
 import { BiLeftArrow } from 'react-icons/bi';
 import { BsGlobe, BsReddit, BsCurrencyDollar } from 'react-icons/bs';
 import DOMPurify from 'dompurify';
 import { useRouter } from 'next/router';
+import { RiStarSLine, RiStarSFill } from 'react-icons/ri';
+import {
+  openLoginModal,
+  addToPortfolio,
+  removeFromPortfolio,
+} from '../../redux/features/homeSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
+import { useAuth } from '../../context/AuthContext';
 
 const SingleCoin = ({ coin }: SingleCoinTypes) => {
+  const dispatch = useDispatch();
   const router = useRouter();
+  const { user } = useAuth();
+  const { portfolio } = useSelector((store: RootState) => store.home);
+  //console.log(portfolio);
+
   if (Object.entries(coin).length > 0) {
     const {
+      id,
       name,
       symbol,
-      image: { large },
+      image: { large: image },
       market_data: {
-        sparkline_7d: { price },
-        market_cap: { usd: marketCap },
-        total_volume: { usd: totalVolume },
+        sparkline_7d: { price: sparkline_in_7d },
+        market_cap: { usd: market_cap },
+        total_volume: { usd: total_volume },
         high_24h: { usd: high24 },
         low_24h: { usd: low24 },
         market_cap_rank,
@@ -32,9 +46,21 @@ const SingleCoin = ({ coin }: SingleCoinTypes) => {
       hashing_algorithm,
       liquidity_score,
 
-      links: { subreddit_url, chat_url, homepage },
+      links: { subreddit_url, homepage },
       description: { en: desc_eng },
     } = coin;
+
+    const crypto = {
+      id,
+      name,
+      image,
+      symbol,
+      price_change_percentage_24h,
+      total_volume,
+      market_cap,
+      sparkline_in_7d,
+      market_cap_rank,
+    };
 
     return (
       <section>
@@ -49,7 +75,7 @@ const SingleCoin = ({ coin }: SingleCoinTypes) => {
           </div>
           <div className='flex gap-[160px] items-start mb-[112px]'>
             <div className='flex items-center gap-3'>
-              <Image src={large} alt={name} width={70} height={70} />
+              <Image src={image} alt={name} width={70} height={70} />
               <div>
                 <h4 className='font-bold text-xl'>{name}</h4>
                 <span>{symbol.toUpperCase()}</span>
@@ -84,7 +110,29 @@ const SingleCoin = ({ coin }: SingleCoinTypes) => {
                 </span>
               </div>
             </div>
-            <div>add t waghg</div>
+            <div className='flex items-center gap-2 font-semibold text-lg'>
+              {user ? (
+                portfolio.find((item) => item.name === name) ? (
+                  <RiStarSFill
+                    className='w-[24px] h-[24px] cursor-pointer'
+                    onClick={() => dispatch(removeFromPortfolio(crypto))}
+                  />
+                ) : (
+                  <RiStarSLine
+                    className='w-[24px] h-[24px] cursor-pointer'
+                    onClick={() => dispatch(addToPortfolio(crypto))}
+                  />
+                )
+              ) : (
+                <RiStarSLine
+                  className='w-[24px] h-[24px] cursor-pointer'
+                  onClick={() => dispatch(openLoginModal())}
+                />
+              )}
+              {user && portfolio.find((item) => item.name === name)
+                ? 'Remove from watch list'
+                : 'Add to watch list'}
+            </div>
           </div>
           <div>
             <div className='flex items-center justify-between '>
@@ -93,7 +141,7 @@ const SingleCoin = ({ coin }: SingleCoinTypes) => {
               </span>
               <span className='font-bold text-xl'>7 Days</span>
             </div>
-            <Sparklines data={price}>
+            <Sparklines data={sparkline_in_7d}>
               <SparklinesLine color='#1864ab' />
             </Sparklines>
             {/* // market cap */}
@@ -101,13 +149,13 @@ const SingleCoin = ({ coin }: SingleCoinTypes) => {
               <div>
                 <h2>Market Cap</h2>
                 <span className='font-semibold'>
-                  ${marketCap.toLocaleString()}
+                  ${market_cap.toLocaleString()}
                 </span>
               </div>
               <div className='place-self-star'>
                 <h2>Volume 24h</h2>
                 <span className='font-semibold'>
-                  ${totalVolume.toLocaleString()}
+                  ${total_volume.toLocaleString()}
                 </span>
               </div>
               <div>

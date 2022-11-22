@@ -1,5 +1,6 @@
 export default interface SingleCoinTypes {
   coin: {
+    id: number;
     name: string;
     symbol: string;
     image: {
