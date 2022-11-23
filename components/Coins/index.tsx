@@ -11,11 +11,32 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { useAuth } from '../../context/AuthContext';
 import { RootState } from '../../redux/store';
+import { db } from '../../config/firebase';
+import { arrayUnion, doc, updateDoc } from 'firebase/firestore';
 
 const Coins = ({ cryptos, searchValue, inputHandler }: CoinsTypes) => {
   const { user } = useAuth();
   const dispatch = useDispatch();
   const { portfolio } = useSelector((store: RootState) => store.home);
+
+  // const coinPath = doc(db, 'users', `${user?.email}`);
+
+  // const saveCoin = async () => {
+  //   if (user?.email) {
+  //     //   setSavedCoin(true);
+  //     await updateDoc(coinPath, {
+  //       portfolio: arrayUnion({
+  //         id: cryptos.id,
+  //         name: cryptos.name,
+  //         image: cryptos.image,
+  //         rank: cryptos.market_cap_rank,
+  //         symbol: cryptos.symbol,
+  //       }),
+  //     });
+  //   } else {
+  //     // setSignInModalOpen(true);
+  //   }
+  // };
 
   return (
     <section>

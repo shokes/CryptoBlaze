@@ -16,9 +16,12 @@ import { AiFillDelete } from 'react-icons/ai';
 import Link from 'next/link';
 import { Sparklines, SparklinesLine } from 'react-sparklines';
 import Image from 'next/image';
+import firebase from './../config/firebase';
 
 const Account = () => {
   const { user } = useAuth();
+
+  // ref = firebase.firestore().coll;
 
   const activePage = 'Account';
   const dispatch = useDispatch();

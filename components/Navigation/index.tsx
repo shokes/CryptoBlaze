@@ -1,4 +1,4 @@
-import { BsFillMoonFill } from 'react-icons/bs';
+import { BsFillMoonFill, BsFillSunFill } from 'react-icons/bs';
 import Logo from '../../public/Logo/CryptoBlazeLogo.png';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -130,7 +130,7 @@ const Navigation = () => {
           );
         })}
         <div>
-          <BsFillMoonFill />
+          <BsFillMoonFill className='cursor-pointer' />
         </div>
         <Link
           href='/portfolio'

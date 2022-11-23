@@ -17,6 +17,19 @@
   --red: #e03131;
 }
 
+.light {
+  --extraLightBlue: #e7f5ff;
+  --lightBlue: #a5d8ff;
+  --hover: #1c7ed6;
+  --blue: #1864ab;
+  --green: #2f9e44;
+  --red: #e03131;
+}
+
+/* .dark{
+
+} */
+
 body {
   background: #e7f5ff;
   font-family: 'Open Sans', sans-serif;
