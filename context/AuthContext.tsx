@@ -46,6 +46,24 @@ export const AuthContextProvider = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const [theme, setTheme] = useState('light-theme');
+
+  useEffect(() => {
+    // document.documentElement.classList = theme;
+    //  document.documentElement.classList.toggle(theme);
+    document.documentElement.className = theme;
+    localStorage.setItem('theme', theme);
+    // eslint-disable-next-line
+  }, [theme]);
+
+  const themeHandler = () => {
+    if (theme === 'dark-theme') {
+      setTheme('light-theme');
+    } else if (theme === 'light-theme') {
+      setTheme('dark-theme');
+    }
+  };
+
   const signup = (email: string, password: string) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
@@ -78,7 +96,9 @@ export const AuthContextProvider = ({
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, signup, logout, googleSignIn }}>
+    <AuthContext.Provider
+      value={{ user, login, themeHandler, theme, signup, logout, googleSignIn }}
+    >
       {loading ? null : children}
     </AuthContext.Provider>
   );

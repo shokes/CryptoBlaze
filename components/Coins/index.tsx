@@ -49,13 +49,13 @@ const Coins = ({ cryptos, searchValue, inputHandler }: CoinsTypes) => {
             ref={searchValue}
             type='text'
             placeholder='Search...'
-            className=' border border-blue rounded w-[320px] h-[42px] p-2'
+            className=' border border-blue rounded w-[320px] h-[42px] p-2 text-[#343a40]'
             onChange={inputHandler}
           />
         </div>
 
         <table className=''>
-          <thead className='sticky top-0 bg-extraLightBlue'>
+          <thead className='sticky top-0 bg-extraLightBlue animation'>
             <tr>
               <th></th>
               <th>Rank</th>

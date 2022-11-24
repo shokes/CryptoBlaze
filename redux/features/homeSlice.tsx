@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk, current } from '@reduxjs/toolkit';
 import requests from '../../requests/requests';
 import StateTypes from '../../interfaces/stateTypes';
+import { useEffect } from 'react';
 
 const initialState: StateTypes = {
   cryptos: [],
@@ -21,6 +22,12 @@ export const getCryptos: any = createAsyncThunk(
   }
 );
 
+// useEffect(() => {
+//   document.documentElement.classList = state.theme;
+//   localStorage.setItem('theme', theme);
+//   // eslint-disable-next-line
+// }, [theme]);
+
 const homeSlice = createSlice({
   name: 'home',
   initialState,
@@ -31,7 +38,6 @@ const homeSlice = createSlice({
     },
 
     closeLoginModal: (state) => {
-   
       state.loginModal = false;
     },
 
@@ -42,11 +48,9 @@ const homeSlice = createSlice({
 
     closeSignUpModal: (state) => {
       state.signUpModal = false;
-     
     },
 
     addToPortfolio: (state, action) => {
-  
       let data = action.payload;
 
       if (state.portfolio.some((item: any) => item.name === data.name)) return;

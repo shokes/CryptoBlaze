@@ -17,7 +17,7 @@ const Navigation = () => {
   );
   const dispatch = useDispatch();
 
-  const { user, logout } = useAuth();
+  const { user, logout, themeHandler, theme } = useAuth();
 
   const navItems: NavigationTypes[] = [
     {
@@ -129,8 +129,8 @@ const Navigation = () => {
             </div>
           );
         })}
-        <div>
-          <BsFillMoonFill className='cursor-pointer' />
+        <div onClick={themeHandler} className='cursor-pointer'>
+          {theme === 'dark-theme' ? <BsFillSunFill /> : <BsFillMoonFill />}
         </div>
         <Link
           href='/portfolio'
