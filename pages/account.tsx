@@ -12,9 +12,9 @@ import { auth } from '../config/firebase';
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
 import { useAuth } from '../context/AuthContext';
-
 import firebase from './../config/firebase';
 import Portfolio from '../components/Portfolio';
+import { FadeInText } from '../components/Animations/fadeInText';
 
 const Account = () => {
   const { user } = useAuth();
@@ -44,7 +44,7 @@ const Account = () => {
           </p>
 
           <h2 className='font-bold text-xl mt-[64px] mb-[32px]'>
-            My Portfolio
+            <FadeInText text='My Portfolio' />
           </h2>
           <Portfolio portfolio={portfolio} />
         </div>

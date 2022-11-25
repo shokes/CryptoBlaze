@@ -1,6 +1,6 @@
 import React from 'react';
 import ModalLayout from '../ModalLayout';
-import { GrClose } from 'react-icons/gr';
+import { IoMdClose } from 'react-icons/io';
 import GoogleIcon from '../../public/Logo/images.png';
 import Image from 'next/image';
 import {
@@ -91,8 +91,8 @@ const LoginModal = () => {
             >
               <Image
                 src={GoogleIcon}
-                width={20}
-                height={20}
+                width={18}
+                height={18}
                 alt='google icon'
               />
               Continue with Google
@@ -106,7 +106,7 @@ const LoginModal = () => {
             dispatch(closeLoginModal());
           }}
         >
-          <GrClose className='w-[22.4px] h-[22.4px]' />
+          <IoMdClose className='w-[27px] h-[27px] text-text' />
         </span>
         <p className='text-center text-sm'>
           Don&apos;t have an account yet?{' '}

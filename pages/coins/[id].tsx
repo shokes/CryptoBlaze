@@ -8,6 +8,7 @@ import CryptoTypes from '../../interfaces/cryptoTypes';
 const SingleCoinPage = () => {
   const [crypto, setCrypto] = useState<CryptoTypes>({} as CryptoTypes);
   const router = useRouter();
+  const [loading, setLoading] = useState(true);
 
   const { id } = router.query;
 
@@ -18,11 +19,12 @@ const SingleCoinPage = () => {
 
     const getSingleCoin = async () => {
       try {
+        setLoading(true);
         const response = await fetch(
           `https://api.coingecko.com/api/v3/coins/${id}?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=true`
         );
         const data = await response.json();
-
+        setLoading(false);
         setCrypto(data);
       } catch (error) {
         console.log('an error occured');
@@ -33,7 +35,7 @@ const SingleCoinPage = () => {
 
   return (
     <Layout activePage={crypto.name === undefined ? '' : crypto.name}>
-      <SingleCoin coin={crypto} />
+      <SingleCoin coin={crypto} loading={loading} />
     </Layout>
   );
 };

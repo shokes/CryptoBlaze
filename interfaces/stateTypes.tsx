@@ -11,7 +11,7 @@ export default interface StateTypes {
     sparkline_in_7d: { price: [] };
     market_cap_rank: number;
   }[];
-  isLoading: boolean;
+  loading: boolean;
   loginModal: boolean;
   signUpModal: boolean;
   portfolio: {

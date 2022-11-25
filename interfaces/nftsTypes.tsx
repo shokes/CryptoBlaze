@@ -5,4 +5,6 @@ export default interface NftsTypes {
     contract_address: string;
     name: string;
   }[];
+
+  loading: boolean;
 }

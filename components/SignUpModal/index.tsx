@@ -1,6 +1,6 @@
 import React from 'react';
 import ModalLayout from '../ModalLayout';
-import { GrClose } from 'react-icons/gr';
+import { IoMdClose } from 'react-icons/io';
 import GoogleIcon from '../../public/Logo/images.png';
 import Image from 'next/image';
 import {
@@ -49,7 +49,7 @@ const SignUpModal = () => {
 
         <div className='flex flex-col gap-4 mb-4'>
           <button className='flex mt-3 items-center gap-3 justify-center border py-2 border-blue hover:border-[#000] hover:text-blue  duration-150 ease-in-out rounded w-full'>
-            <Image src={GoogleIcon} width={20} height={20} alt='google icon' />
+            <Image src={GoogleIcon} width={18} height={18} alt='google icon' />
             Continue with Google
           </button>
 
@@ -120,12 +120,12 @@ const SignUpModal = () => {
           </span>
         </p>
         <span
-          className=' right-0 -top-[32px] absolute cursor-pointer'
+          className=' right-0 -top-[32px] absolute cursor-pointer '
           onClick={() => {
             dispatch(closeSignUpModal());
           }}
         >
-          <GrClose className='w-[22.4px] h-[22.4px]' />
+          <IoMdClose className='w-[27px] h-[27px] text-text' />
         </span>
       </div>
     </ModalLayout>

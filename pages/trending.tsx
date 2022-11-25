@@ -8,7 +8,9 @@ import TrendingCoins from '../components/TrendingCoins';
 
 const Trending = () => {
   const dispatch = useDispatch();
-  const { trending } = useSelector((store: RootState) => store.trending);
+  const { trending, loading } = useSelector(
+    (store: RootState) => store.trending
+  );
 
   useEffect(() => {
     dispatch(getTrending());
@@ -18,7 +20,7 @@ const Trending = () => {
   const activePage = 'trending';
   return (
     <Layout activePage={activePage}>
-      <TrendingCoins cryptos={trending} />
+      <TrendingCoins cryptos={trending} loading={loading} />
     </Layout>
   );
 };

@@ -129,8 +129,12 @@ const Navigation = () => {
             </div>
           );
         })}
-        <div onClick={themeHandler} className='cursor-pointer'>
-          {theme === 'dark-theme' ? <BsFillSunFill /> : <BsFillMoonFill />}
+        <div onClick={themeHandler} className='cursor-pointer '>
+          {theme === 'dark-theme' ? (
+            <BsFillSunFill className='w-[18px] h-[18px] hover:text-blue' />
+          ) : (
+            <BsFillMoonFill className='w-[18px] h-[18px] hover:text-blue' />
+          )}
         </div>
         <Link
           href='/portfolio'

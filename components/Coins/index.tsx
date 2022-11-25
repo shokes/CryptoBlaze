@@ -13,11 +13,14 @@ import { useAuth } from '../../context/AuthContext';
 import { RootState } from '../../redux/store';
 import { db } from '../../config/firebase';
 import { arrayUnion, doc, updateDoc } from 'firebase/firestore';
+import Loading from '../Loading';
+import { FadeInText } from '../Animations/fadeInText';
+import { addedAlert, removedAlert } from '../Toasts';
 
 const Coins = ({ cryptos, searchValue, inputHandler }: CoinsTypes) => {
   const { user } = useAuth();
   const dispatch = useDispatch();
-  const { portfolio } = useSelector((store: RootState) => store.home);
+  const { portfolio, loading } = useSelector((store: RootState) => store.home);
 
   // const coinPath = doc(db, 'users', `${user?.email}`);
 
@@ -38,12 +41,16 @@ const Coins = ({ cryptos, searchValue, inputHandler }: CoinsTypes) => {
   //   }
   // };
 
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
     <section>
       <div>
         <div className='flex justify-between items-center mb-[40px]'>
           <h2 className='font-bold text-xl'>
-            Cryptocurrency Prices by Market Cap
+            <FadeInText text='Cryptocurrency Prices by Market Cap' />
           </h2>
           <input
             ref={searchValue}
@@ -54,7 +61,7 @@ const Coins = ({ cryptos, searchValue, inputHandler }: CoinsTypes) => {
           />
         </div>
 
-        <table className=''>
+        <table>
           <thead className='sticky top-0 bg-extraLightBlue animation'>
             <tr>
               <th></th>
@@ -91,12 +98,18 @@ const Coins = ({ cryptos, searchValue, inputHandler }: CoinsTypes) => {
                       portfolio.find((item) => item.name === name) ? (
                         <RiStarSFill
                           className='w-[24px] h-[24px] cursor-pointer'
-                          onClick={() => dispatch(removeFromPortfolio(crypto))}
+                          onClick={() => {
+                            dispatch(removeFromPortfolio(crypto));
+                            removedAlert(name);
+                          }}
                         />
                       ) : (
                         <RiStarSLine
                           className='w-[24px] h-[24px] cursor-pointer'
-                          onClick={() => dispatch(addToPortfolio(crypto))}
+                          onClick={() => {
+                            dispatch(addToPortfolio(crypto));
+                            addedAlert(name);
+                          }}
                         />
                       )
                     ) : (

@@ -1,11 +1,19 @@
 import React from 'react';
 import NftsTypes from '../../interfaces/nftsTypes';
+import { FadeInText } from '../Animations/fadeInText';
+import Loading from '../Loading';
 
-const Nfts = ({ nftList }: NftsTypes) => {
+const Nfts = ({ nftList, loading }: NftsTypes) => {
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
     <section>
       <div className='mb-[40px]'>
-        <h2 className='font-bold text-xl'>Trending NFTs</h2>
+        <h2 className='font-bold text-xl'>
+          <FadeInText text='Trending NFTs' />{' '}
+        </h2>
       </div>
 
       <table>

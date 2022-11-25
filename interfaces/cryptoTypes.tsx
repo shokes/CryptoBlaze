@@ -1,4 +1,5 @@
 export default interface CryptoTypes {
+  id: number;
   name: string;
   symbol: string;
   image: {

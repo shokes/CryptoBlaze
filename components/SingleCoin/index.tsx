@@ -15,13 +15,19 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { useAuth } from '../../context/AuthContext';
+import Loading from '../Loading';
+import { addedAlert, removedAlert } from '../Toasts';
 
-const SingleCoin = ({ coin }: SingleCoinTypes) => {
+const SingleCoin = ({ coin, loading }: SingleCoinTypes) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const { user } = useAuth();
+
   const { portfolio } = useSelector((store: RootState) => store.home);
-  //console.log(portfolio);
+
+  if (loading) {
+    return <Loading />;
+  }
 
   if (Object.entries(coin).length > 0) {
     const {
@@ -115,12 +121,18 @@ const SingleCoin = ({ coin }: SingleCoinTypes) => {
                 portfolio.find((item) => item.name === name) ? (
                   <RiStarSFill
                     className='w-[24px] h-[24px] cursor-pointer'
-                    onClick={() => dispatch(removeFromPortfolio(crypto))}
+                    onClick={() => {
+                      dispatch(removeFromPortfolio(crypto));
+                      removedAlert(name);
+                    }}
                   />
                 ) : (
                   <RiStarSLine
                     className='w-[24px] h-[24px] cursor-pointer'
-                    onClick={() => dispatch(addToPortfolio(crypto))}
+                    onClick={() => {
+                      dispatch(addToPortfolio(crypto));
+                      addedAlert(name);
+                    }}
                   />
                 )
               ) : (

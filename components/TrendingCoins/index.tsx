@@ -3,13 +3,25 @@ import TrendingCoinsTypes from '../../interfaces/trendingCoinsTypes';
 import Image from 'next/image';
 import btc from '../../public/Logo/BTCLogo.png';
 import Link from 'next/link';
+import Loading from '../Loading';
+import { FadeInText } from '../Animations/fadeInText';
 
-const TrendingCoins = ({ cryptos }: TrendingCoinsTypes) => {
+const TrendingCoins = ({ cryptos, loading }: TrendingCoinsTypes) => {
+  if (loading) {
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
+  }
+
   return (
     <section>
       <div>
         <div className=' mb-[40px]'>
-          <h2 className='font-bold text-xl'>Trending Coins</h2>
+          <h2 className='font-bold text-xl'>
+            <FadeInText text=' Trending Coins' />{' '}
+          </h2>
         </div>
 
         <div className='grid grid-cols-3  gap-y-[54px] gap-x-[64px] '>

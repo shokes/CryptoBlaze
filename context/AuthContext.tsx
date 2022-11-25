@@ -23,7 +23,6 @@ export const AuthContextProvider = ({
 }) => {
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
-  const router = useRouter();
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -46,23 +45,30 @@ export const AuthContextProvider = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const [theme, setTheme] = useState('light-theme');
+  const getStorageTheme = () => {
+    if (typeof window !== 'undefined') {
+      let theme: string | null = 'light-theme';
+      if (localStorage.getItem('theme')) {
+        theme = localStorage.getItem('theme');
+      }
+      return theme;
+    }
+  };
 
-  useEffect(() => {
-    // document.documentElement.classList = theme;
-    //  document.documentElement.classList.toggle(theme);
-    document.documentElement.className = theme;
-    localStorage.setItem('theme', theme);
-    // eslint-disable-next-line
-  }, [theme]);
+  const [theme, setTheme] = useState<any>(getStorageTheme());
 
   const themeHandler = () => {
     if (theme === 'dark-theme') {
       setTheme('light-theme');
-    } else if (theme === 'light-theme') {
+    } else {
       setTheme('dark-theme');
     }
   };
+
+  useEffect(() => {
+    document.documentElement.className = theme;
+    localStorage.setItem('theme', theme);
+  }, [theme]);
 
   const signup = (email: string, password: string) => {
     return createUserWithEmailAndPassword(auth, email, password);
@@ -99,7 +105,7 @@ export const AuthContextProvider = ({
     <AuthContext.Provider
       value={{ user, login, themeHandler, theme, signup, logout, googleSignIn }}
     >
-      {loading ? null : children}
+      {children}
     </AuthContext.Provider>
   );
 };

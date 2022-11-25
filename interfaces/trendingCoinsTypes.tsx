@@ -9,4 +9,6 @@ export default interface TrendingCoinsTypes {
       id: string;
     };
   }[];
+
+  loading: boolean;
 }

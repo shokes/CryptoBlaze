@@ -9,7 +9,7 @@ import { RootState } from '../redux/store';
 
 const Nft = () => {
   const dispatch = useDispatch();
-  const { nfts } = useSelector((store: RootState) => store.nfts);
+  const { nfts, loading } = useSelector((store: RootState) => store.nfts);
   const activePage = 'nft';
 
   useEffect(() => {
@@ -19,7 +19,7 @@ const Nft = () => {
 
   return (
     <Layout activePage={activePage}>
-      <Nfts nftList={nfts} />
+      <Nfts nftList={nfts} loading={loading} />
     </Layout>
   );
 };

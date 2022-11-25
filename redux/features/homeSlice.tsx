@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 
 const initialState: StateTypes = {
   cryptos: [],
-  isLoading: false,
+  loading: true,
   loginModal: false,
   signUpModal: false,
   portfolio: [],
@@ -65,14 +65,14 @@ const homeSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(getCryptos.pending, (state) => {
-      state.isLoading = true;
+      state.loading = true;
     }),
       builder.addCase(getCryptos.fulfilled, (state, action) => {
-        state.isLoading = false;
+        state.loading = false;
         state.cryptos = action.payload;
       }),
       builder.addCase(getCryptos.rejected, (state) => {
-        state.isLoading = false;
+        state.loading = false;
       });
   },
 });

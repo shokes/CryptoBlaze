@@ -75,6 +75,17 @@ const Footer = () => {
           <FiGithub className='text-blue' />
         </a>
       </div>
+      <p className='text-center text-sm'>
+        DEVELOPMENT BY{' '}
+        <a
+          href='https://twitter.com/Airshokes'
+          target='_blank'
+          rel='noreferrer'
+          className='hover:underline underline-offset-2'
+        >
+          OSHOKE
+        </a>
+      </p>
     </footer>
   );
 };

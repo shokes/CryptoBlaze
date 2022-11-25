@@ -4,16 +4,19 @@ import Link from 'next/link';
 import { BiRightArrow } from 'react-icons/bi';
 import Footer from '../components/Footer';
 import Head from 'next/head';
-import WebShot from '../public/Images/webshot.png';
+import Light from '../public/Images/light.png';
+import Dark from '../public/Images/dark.png';
 import Image from 'next/image';
 import { openLoginModal } from '../redux/features/homeSlice';
 import { openSignUpModal } from '../redux/features/homeSlice';
 import { useDispatch } from 'react-redux';
 import { useAuth } from '../context/AuthContext';
+import { FadeIn } from '../components/Animations/fadeIn';
+import { FadeInText } from '../components/Animations/fadeInText';
 
 const Portfolio = () => {
   const dispatch = useDispatch();
-  const { user } = useAuth();
+  const { user, theme } = useAuth();
 
   return (
     <section>
@@ -38,13 +41,17 @@ const Portfolio = () => {
 
         <div className='flex items-center gap-[20px] mt-[50px]'>
           <div className=''>
-            <h2 className='text-3xl font-bold w-[400px] mb-[27px]'>
-              Free & Powerful Crypto Portfolio Tracker
-            </h2>
-            <p className='w-[528px] mb-[27px] text-lg'>
-              Track your crypto earnings like a pro, with a user-friendly and
-              reliable portfolio tracker that you can rely on
-            </p>
+            <FadeIn>
+              <h2 className='text-3xl font-bold w-[400px] mb-[27px]'>
+                Free & Powerful Crypto Portfolio Tracker
+              </h2>
+
+              <p className='w-[528px] mb-[27px] text-lg'>
+                Track your crypto earnings like a pro, with a user-friendly and
+                reliable portfolio tracker that you can rely on
+              </p>
+            </FadeIn>
+
             {user ? (
               <Link
                 href='/account'
@@ -72,13 +79,15 @@ const Portfolio = () => {
                     Login
                   </button>
                 </div>
-                <p className='text-lg'>Start your portfolio now!</p>
+                <p className='text-lg'>
+                  <FadeInText text='Start your portfolio now!' />
+                </p>
               </div>
             )}
           </div>
 
           <Image
-            src={WebShot}
+            src={theme === 'light-theme' ? Light : Dark}
             alt='preview of web app on macbook pro'
             width={550}
             height={550}

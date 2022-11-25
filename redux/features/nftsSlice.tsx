@@ -3,7 +3,7 @@ import requests from '../../requests/requests';
 
 const initialState = {
   nfts: [],
-  isLoading: false,
+  loading: false,
 };
 
 // fetching cryptos to be displayed home
@@ -20,15 +20,15 @@ const NftsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getNfts.pending, (state) => {
-      state.isLoading = true;
+      state.loading = true;
     }),
       builder.addCase(getNfts.fulfilled, (state, action) => {
-        state.isLoading = false;
+        state.loading = false;
 
         state.nfts = action.payload;
       }),
       builder.addCase(getNfts.rejected, (state) => {
-        state.isLoading = false;
+        state.loading = false;
       });
   },
 });

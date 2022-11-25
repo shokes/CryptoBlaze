@@ -3,11 +3,10 @@ import requests from '../../requests/requests';
 
 const initialState = {
   trending: [],
-  isLoading: false,
+  loading: false,
 };
 
 // fetching cryptos to be displayed in trending page
-
 export const getTrending: any = createAsyncThunk(
   'cryptos/getTrending',
   async () => {
@@ -23,15 +22,15 @@ const trendingSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getTrending.pending, (state) => {
-      state.isLoading = true;
+      state.loading = true;
     }),
       builder.addCase(getTrending.fulfilled, (state, action) => {
-        state.isLoading = false;
+        state.loading = false;
 
         state.trending = action.payload.coins;
       }),
       builder.addCase(getTrending.rejected, (state) => {
-        state.isLoading = false;
+        state.loading = false;
       });
   },
 });

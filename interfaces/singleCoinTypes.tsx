@@ -41,4 +41,6 @@ export default interface SingleCoinTypes {
     hashing_algorithm: number;
     liquidity_score: number;
   };
+
+  loading: boolean;
 }
