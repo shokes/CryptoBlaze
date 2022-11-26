@@ -17,6 +17,8 @@ import { RootState } from '../../redux/store';
 import { useAuth } from '../../context/AuthContext';
 import Loading from '../Loading';
 import { addedAlert, removedAlert } from '../Toasts';
+import { FadeIn } from '../Animations/fadeIn';
+import { FadeInText } from '../Animations/fadeInText';
 
 const SingleCoin = ({ coin, loading }: SingleCoinTypes) => {
   const dispatch = useDispatch();
@@ -241,14 +243,18 @@ const SingleCoin = ({ coin, loading }: SingleCoinTypes) => {
               </div>
             </div>
             <div className='mt-14'>
-              <h2 className='font-bold mb-2'>About {name}</h2>
+              <h2 className='font-bold mb-2'>
+                <FadeInText text={`About ${name}`} />{' '}
+              </h2>
               {desc_eng ? (
-                <p
-                  className=''
-                  dangerouslySetInnerHTML={{
-                    __html: DOMPurify.sanitize(desc_eng),
-                  }}
-                ></p>
+                <FadeIn>
+                  <p
+                    className=''
+                    dangerouslySetInnerHTML={{
+                      __html: DOMPurify.sanitize(desc_eng),
+                    }}
+                  ></p>
+                </FadeIn>
               ) : (
                 'Not available at this moment...'
               )}

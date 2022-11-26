@@ -8,6 +8,14 @@
   box-sizing: border-box;
 }
 
+html,
+body,
+#__next {
+  width: 100%;
+  min-height: 100vh;
+  scroll-behavior: initial;
+}
+
 :root {
   --extraLightBlue: #e7f5ff;
   --lightBlue: #a5d8ff;
@@ -45,9 +53,6 @@ body {
   color: var(--text);
   transition-duration: 300ms;
   transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
-  min-height: 100vh;
-  width: 100%;
-  scroll-behavior: initial;
 
   /* hide scrollbar */
   -ms-overflow-style: none; /* IE and Edge */

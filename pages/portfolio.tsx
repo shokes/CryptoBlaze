@@ -13,6 +13,7 @@ import { useDispatch } from 'react-redux';
 import { useAuth } from '../context/AuthContext';
 import { FadeIn } from '../components/Animations/fadeIn';
 import { FadeInText } from '../components/Animations/fadeInText';
+import { CustomCursor } from '../components/CustomCursor';
 
 const Portfolio = () => {
   const dispatch = useDispatch();
@@ -98,6 +99,7 @@ const Portfolio = () => {
       <div className='container'>
         <Footer />
       </div>
+      <CustomCursor />
     </section>
   );
 };

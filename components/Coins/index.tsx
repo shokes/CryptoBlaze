@@ -13,12 +13,14 @@ import { useAuth } from '../../context/AuthContext';
 import { RootState } from '../../redux/store';
 import { db } from '../../config/firebase';
 import { arrayUnion, doc, updateDoc } from 'firebase/firestore';
+import { motion, Variants } from 'framer-motion';
 import Loading from '../Loading';
 import { FadeInText } from '../Animations/fadeInText';
 import { addedAlert, removedAlert } from '../Toasts';
+import { FadeIn } from '../Animations/fadeIn';
 
 const Coins = ({ cryptos, searchValue, inputHandler }: CoinsTypes) => {
-  const { user } = useAuth();
+  const { user, theme } = useAuth();
   const dispatch = useDispatch();
   const { portfolio, loading } = useSelector((store: RootState) => store.home);
 
@@ -47,7 +49,7 @@ const Coins = ({ cryptos, searchValue, inputHandler }: CoinsTypes) => {
 
   return (
     <section>
-      <div>
+      <div className='relative'>
         <div className='flex justify-between items-center mb-[40px]'>
           <h2 className='font-bold text-xl'>
             <FadeInText text='Cryptocurrency Prices by Market Cap' />
@@ -130,7 +132,7 @@ const Coins = ({ cryptos, searchValue, inputHandler }: CoinsTypes) => {
                     />
                     <Link
                       href={`coins/${id}`}
-                      className='hover:underline underline-offset-2'
+                      className='hover:underline underline-offset-2 hover:text-blue duration-150 ease-in-out '
                     >
                       {name}
                     </Link>
@@ -158,9 +160,56 @@ const Coins = ({ cryptos, searchValue, inputHandler }: CoinsTypes) => {
             })}
           </tbody>
         </table>
+        <motion.div
+          variants={infiniteRotate}
+          animate='rotate'
+          className='absolute -top-[64px] right-[416px] rotate-180 '
+        >
+          <div className='scale-75 lg:scale-100'>
+            <svg
+              version='1.1'
+              xmlns='http://www.w3.org/2000/svg'
+              xmlnsXlink='http://www.w3.org/1999/xlink'
+              x='0px'
+              y='0px'
+              width='100px'
+              height='100px'
+              viewBox='0 0 300 300'
+              xmlSpace='preserve'
+            >
+              <defs>
+                <path
+                  id='circlePath'
+                  d=' M 150, 150 m -120, 0 a 120,120 0 0,1 240,0 a 120,120 0 0,1 -240,0'
+                />
+              </defs>
+
+              <g>
+                <use xlinkHref='#circlePath' fill='none' />
+
+                <text fill={theme === 'light-theme' ? '#343a40' : '#f8f9fa'}>
+                  <textPath xlinkHref='#circlePath' fontSize='2.15rem'>
+                    SCROLL TO EXPLORE - SCROLL TO EXPLORE -
+                  </textPath>
+                </text>
+              </g>
+            </svg>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
 };
 
 export default Coins;
+
+const infiniteRotate: Variants = {
+  rotate: {
+    rotate: 360,
+    transition: {
+      repeat: Infinity,
+      duration: 8,
+      ease: 'linear',
+    },
+  },
+};

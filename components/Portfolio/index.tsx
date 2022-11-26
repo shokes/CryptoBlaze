@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { removeFromPortfolio } from '../../redux/features/homeSlice';
 import { useDispatch } from 'react-redux';
 import PortfolioTypes from '../../interfaces/portfolioTypes';
+import { removedAlert } from '../Toasts';
 
 const Portfolio = ({ portfolio }: PortfolioTypes) => {
   const dispatch = useDispatch();
@@ -95,7 +96,10 @@ const Portfolio = ({ portfolio }: PortfolioTypes) => {
                     <div className='relative'>
                       <AiFillDelete
                         className=' w-[32px] absolute -top-[19px] h-[32px] right-1/2 cursor-pointer'
-                        onClick={() => dispatch(removeFromPortfolio(crypto))}
+                        onClick={() => {
+                          dispatch(removeFromPortfolio(crypto));
+                          removedAlert(name);
+                        }}
                       />
                     </div>
                   </td>

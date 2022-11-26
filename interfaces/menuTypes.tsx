@@ -1,3 +1,3 @@
 export default interface MenuType {
-  active: string;
+  active: string | undefined;
 }

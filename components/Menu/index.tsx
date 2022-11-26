@@ -3,6 +3,7 @@ import MenuItemsTypes from '../../interfaces/menuItemsTypes';
 import MenuType from '../../interfaces/menuTypes';
 import Link from 'next/link';
 import { BsFillStarFill } from 'react-icons/bs';
+import { useAuth } from '../../context/AuthContext';
 
 const Menu = ({ active }: MenuType) => {
   const menuItems: MenuItemsTypes[] = [
@@ -42,7 +43,7 @@ const Menu = ({ active }: MenuType) => {
     },
   ];
   return (
-    <div className='my-[40px]'>
+    <div className='my-[40px] relative'>
       <div className='flex items-center gap-[64px] font-medium'>
         {menuItems.map((item) => {
           const { title, id, url } = item;

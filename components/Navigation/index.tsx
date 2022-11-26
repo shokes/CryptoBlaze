@@ -86,7 +86,7 @@ const Navigation = () => {
   ];
 
   return (
-    <section className='relative'>
+    <section className='relative '>
       <div className='flex items-center gap-5 justify-between pt-5 font-medium'>
         <Link href='/' className='flex gap-2 items-center font-bold text-xl'>
           {' '}

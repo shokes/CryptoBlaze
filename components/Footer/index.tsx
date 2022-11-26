@@ -9,7 +9,7 @@ const Footer = () => {
     <footer className='pt-[64px] pb-[15px]'>
       <div
         className='flex
-     justify-between items-base mb-[64px] '
+     justify-between items-base mb-[54px] '
       >
         <div className='w-[448px]'>
           <Link
@@ -62,7 +62,7 @@ const Footer = () => {
           </Link>
         </div>
       </div>
-      <div className='justify-center flex items-center gap-3 mb-[2rem]'>
+      <div className='justify-center flex items-center gap-3 mb-[16px]'>
         <a
           href='https://twitter.com/Airshokes'
           target='_blank'
