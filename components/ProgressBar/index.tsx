@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { useOnScroll } from '../../hooks';
+import { useOnScroll } from '../../hooks/useOnScroll';
 
 const Progressbar = () => {
   const progressBarRef = useRef<HTMLDivElement>(null);

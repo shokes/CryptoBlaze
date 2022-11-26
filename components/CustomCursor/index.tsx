@@ -41,7 +41,7 @@ export const CustomCursor = () => {
     >
       <motion.div
         animate={controls}
-        className='absolute z-[200] h-14 w-14 -translate-x-1/2 -translate-y-1/2 rounded-full border border-blue   bg-hover opacity-30 '
+        className='absolute z-[200] h-14 w-14 -translate-x-1/2 -translate-y-1/2 rounded-full cursor-styling  '
       ></motion.div>
     </div>
   );

@@ -1,57 +1,20 @@
 import React from 'react';
-import MenuItemsTypes from '../../interfaces/menuItemsTypes';
+import { menuItems } from '../../routes';
 import MenuType from '../../interfaces/menuTypes';
 import Link from 'next/link';
 import { BsFillStarFill } from 'react-icons/bs';
-import { useAuth } from '../../context/AuthContext';
 
 const Menu = ({ active }: MenuType) => {
-  const menuItems: MenuItemsTypes[] = [
-    {
-      id: 1,
-      title: 'Portfolio',
-      url: '/portfolio',
-      path: 'Hom',
-    },
-
-    {
-      id: 2,
-      title: 'Coins',
-      url: '/',
-      path: 'home',
-    },
-
-    {
-      id: 3,
-      title: 'New Coins',
-      url: '/new-coins',
-      path: 'new-coins',
-    },
-
-    {
-      id: 4,
-      title: 'Trending',
-      url: '/trending',
-      path: 'trending',
-    },
-
-    {
-      id: 5,
-      title: 'NFT',
-      url: '/nft',
-      path: 'nft',
-    },
-  ];
   return (
     <div className='my-[40px] relative'>
-      <div className='flex items-center gap-[64px] font-medium'>
+      <div className='flex items-center gap-[44px] lg:gap-[64px] overflow-x-auto  menu-items font-medium'>
         {menuItems.map((item) => {
           const { title, id, url } = item;
           return (
             <Link
               href={url}
               key={id}
-              className={` flex items-center gap-2  ${
+              className={` flex items-center  menu-items gap-2  ${
                 active === item.path ? 'active ' : 'hover'
               }`}
             >

@@ -2,7 +2,7 @@ import { BsFillMoonFill, BsFillSunFill } from 'react-icons/bs';
 import Logo from '../../public/Logo/CryptoBlazeLogo.png';
 import Image from 'next/image';
 import Link from 'next/link';
-import NavigationTypes from '../../interfaces/navigationTypes';
+import { navItems } from '../../routes';
 import LoginModal from '../LoginModal';
 import SignUpModal from '../SignUpModal';
 import { useSelector, useDispatch } from 'react-redux';
@@ -19,74 +19,8 @@ const Navigation = () => {
 
   const { user, logout, themeHandler, theme } = useAuth();
 
-  const navItems: NavigationTypes[] = [
-    {
-      id: 1,
-      title: 'Cryptocurrencies',
-
-      subTitles: [
-        {
-          title: 'Trending Coins',
-          url: '/trending',
-        },
-        {
-          title: 'New Cryptocurrencies',
-          url: '/',
-        },
-        {
-          title: 'Global Charts',
-          url: '/',
-        },
-        {
-          title: 'All Coins',
-          url: '/',
-        },
-        {
-          title: 'By Market Cap',
-          url: '/',
-        },
-      ],
-    },
-
-    {
-      id: 2,
-      title: 'Exchanges',
-
-      subTitles: [
-        {
-          title: 'Crypto Exchanges',
-          url: '/',
-        },
-        {
-          title: 'Decentralized Exchanges',
-          url: '/',
-        },
-        {
-          title: 'Derivatives',
-          url: '/',
-        },
-      ],
-    },
-
-    {
-      id: 3,
-      title: 'NFT',
-
-      subTitles: [
-        {
-          title: 'NFT Floor price',
-          url: '/nft',
-        },
-        {
-          title: 'NFT Related Coins',
-          url: '/nft',
-        },
-      ],
-    },
-  ];
-
   return (
-    <section className='relative '>
+    <section className='relative hidden lg:block'>
       <div className='flex items-center gap-5 justify-between pt-5 font-medium'>
         <Link href='/' className='flex gap-2 items-center font-bold text-xl'>
           {' '}

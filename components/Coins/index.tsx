@@ -50,21 +50,21 @@ const Coins = ({ cryptos, searchValue, inputHandler }: CoinsTypes) => {
   return (
     <section>
       <div className='relative'>
-        <div className='flex justify-between items-center mb-[40px]'>
-          <h2 className='font-bold text-xl'>
+        <div className='flex flex-col lg:flex-row  gap-3 lg:gap-0  lg:items-center lg:justify-between  lg:mb-[40px]'>
+          <h2 className='font-bold text:lg lg:text-xl'>
             <FadeInText text='Cryptocurrency Prices by Market Cap' />
           </h2>
           <input
             ref={searchValue}
             type='text'
             placeholder='Search...'
-            className=' border border-blue rounded w-[320px] h-[42px] p-2 text-[#343a40]'
+            className=' border border-blue rounded w-full lg:w-[320px] h-[42px] p-2 text-[#343a40]'
             onChange={inputHandler}
           />
         </div>
 
-        <table>
-          <thead className='sticky top-0 bg-extraLightBlue animation'>
+        <table className='overflow-x-auto'>
+          <thead className='lg:sticky lg:top-0 bg-extraLightBlue animation'>
             <tr>
               <th></th>
               <th>Rank</th>
@@ -163,7 +163,7 @@ const Coins = ({ cryptos, searchValue, inputHandler }: CoinsTypes) => {
         <motion.div
           variants={infiniteRotate}
           animate='rotate'
-          className='absolute -top-[64px] right-[416px] rotate-180 '
+          className='absolute -top-[64px] right-[416px] rotate-180 hidden lg:block '
         >
           <div className='scale-75 lg:scale-100'>
             <svg

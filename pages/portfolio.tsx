@@ -14,6 +14,7 @@ import { useAuth } from '../context/AuthContext';
 import { FadeIn } from '../components/Animations/fadeIn';
 import { FadeInText } from '../components/Animations/fadeInText';
 import { CustomCursor } from '../components/CustomCursor';
+import CollapseNav from '../components/Navigation/CollapseNav';
 
 const Portfolio = () => {
   const dispatch = useDispatch();
@@ -27,9 +28,10 @@ const Portfolio = () => {
       <div className='container pb-4'>
         {' '}
         <Navigation />
+        <CollapseNav />
       </div>
       <div className=' border-t mb-5 text-[#adb5bd]'></div>
-      <div className='portfolio-container pb-[5rem]'>
+      <div className='portfolio-container pb-[80px]'>
         <div className='flex items-center gap-1 font-semibold'>
           <Link href='/' className='text-blue'>
             Home
@@ -40,14 +42,14 @@ const Portfolio = () => {
           <span>Portfolio</span>
         </div>
 
-        <div className='flex items-center gap-[20px] mt-[50px]'>
+        <div className='flex flex-col-reverse lg:flex-row items-center gap-[20px] mt-[50px]'>
           <div className=''>
             <FadeIn>
-              <h2 className='text-3xl font-bold w-[400px] mb-[27px]'>
+              <h2 className='text-3xl font-bold lg:w-[400px] mb-[27px]'>
                 Free & Powerful Crypto Portfolio Tracker
               </h2>
 
-              <p className='w-[528px] mb-[27px] text-lg'>
+              <p className='lg:w-[528px] mb-[27px] text-lg'>
                 Track your crypto earnings like a pro, with a user-friendly and
                 reliable portfolio tracker that you can rely on
               </p>

@@ -8,51 +8,19 @@ import { CustomCursor } from '../CustomCursor';
 import { motion, Variants } from 'framer-motion';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
+import CollapseNav from '../Navigation/CollapseNav';
+import { useIsTouchDevice } from '../../hooks/useIsTouchDevice';
 import Progressbar from '../ProgressBar';
-//import { useIsomorphicLayoutEffect } from '@/hooks/use-layout-effect';
-
-// const transitionAnimation: Variants = {
-//   initial: {
-//     opacity: 1,
-//   },
-//   animate: {
-//     opacity: 0,
-//     transition: {
-//       duration: 1.5,
-//       ease: 'anticipate',
-//     },
-//     transitionEnd: {
-//       zIndex: -1,
-//     },
-//   },
-//   exit: {
-//     opacity: 1,
-//   },
-// };
 
 const Layout = ({ children, activePage }: LayoutTypes) => {
   const router = useRouter();
 
-  // useEffect(() => {
-  //   const setViewHeight = () => {
-  //     document.documentElement.style.setProperty(
-  //       '--vh',
-  //       window.innerHeight * 0.01 + 'px'
-  //     );
-  //   };
-
-  //   window.addEventListener('resize', setViewHeight);
-  //   setViewHeight();
-
-  //   return () => {
-  //     window.removeEventListener('resize', setViewHeight);
-  //   };
-  // }, []);
+  const isTouchDevice = useIsTouchDevice();
 
   return (
     <div className='container'>
-      <CustomCursor />
-      <Progressbar />
+      {!isTouchDevice && <CustomCursor />}
+      {!isTouchDevice && <Progressbar />}
       <Head>
         <title>
           CryptoBlaze -{' '}
@@ -60,18 +28,13 @@ const Layout = ({ children, activePage }: LayoutTypes) => {
             activePage.charAt(0).toUpperCase() + activePage.slice(1)}
         </title>
       </Head>
+
       <Navigation />
+
+      <CollapseNav />
+
       <Menu active={activePage} />
       {children}
-
-      {/* <motion.div
-        key={router.asPath}
-        className='fixed inset-0 z-[100] flex flex-grow items-center justify-center bg-noir px-4 py-4'
-        exit='exit'
-        initial='initial'
-        animate='animate'
-        variants={transitionAnimation}
-      /> */}
       <Footer />
     </div>
   );

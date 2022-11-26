@@ -8,10 +8,10 @@ const Footer = () => {
   return (
     <footer className='pt-[64px] pb-[15px]'>
       <div
-        className='flex
+        className='flex flex-col lg:flex-row
      justify-between items-base mb-[54px] '
       >
-        <div className='w-[448px]'>
+        <div className='lg:w-[448px] mb-[32px] lg:mb-[0px]'>
           <Link
             href='/'
             className='flex gap-2 mb-3 items-center font-bold text-xl'
@@ -24,7 +24,7 @@ const Footer = () => {
             CRYPTOBLAZE TRACKS PRICE, VOLUME AND MARKET CAPITALISATION.
           </p>
         </div>
-        <div className='flex flex-col'>
+        <div className='flex flex-col mb-[32px] lg:mb-[0px]'>
           <h2 className='mb-3 font-bold'>EXPLORE</h2>
           <Link
             href='/coins/bitcoin'
