@@ -14,7 +14,7 @@ const Menu = ({ active }: MenuType) => {
             <Link
               href={url}
               key={id}
-              className={` flex items-center  menu-items gap-2  ${
+              className={` flex items-center  nowrap  gap-2  ${
                 active === item.path ? 'active ' : 'hover'
               }`}
             >

@@ -67,14 +67,14 @@ const Coins = ({ cryptos, searchValue, inputHandler }: CoinsTypes) => {
             <thead className='lg:sticky lg:top-0 bg-extraLightBlue animation'>
               <tr>
                 <th></th>
-                <th>Rank</th>
-                <th>Coin</th>
+                <th className='nowrap '>Rank</th>
+                <th className='nowrap '>Coin</th>
                 <th></th>
-                <th>Price</th>
-                <th>24h</th>
-                <th>24h Volume</th>
-                <th>Market</th>
-                <th>Last 7 Days</th>
+                <th className='nowrap '>Price</th>
+                <th className='nowrap '>24h</th>
+                <th className='nowrap '>24h Volume</th>
+                <th className='nowrap '>Market</th>
+                <th className='nowrap '>Last 7 Days</th>
               </tr>
             </thead>
 

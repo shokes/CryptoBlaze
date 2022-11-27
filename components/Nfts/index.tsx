@@ -15,32 +15,33 @@ const Nfts = ({ nftList, loading }: NftsTypes) => {
           <FadeInText text='Trending NFTs' />{' '}
         </h2>
       </div>
+      <div className='overflow-auto'>
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Asset Platform</th>
+              <th>Contact Address</th>
+            </tr>
+          </thead>
 
-      <table>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Name</th>
-            <th>Asset Platform</th>
-            <th>Contact Address</th>
-          </tr>
-        </thead>
+          <tbody>
+            {nftList?.map((item, index) => {
+              const { name, id, asset_platform_id, contract_address } = item;
 
-        <tbody>
-          {nftList?.map((item, index) => {
-            const { name, id, asset_platform_id, contract_address } = item;
-
-            return (
-              <tr key={id}>
-                <td>{index + 1}</td>
-                <td>{name}</td>
-                <td>{asset_platform_id}</td>
-                <td>{contract_address}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+              return (
+                <tr key={id}>
+                  <td>{index + 1}</td>
+                  <td>{name}</td>
+                  <td>{asset_platform_id}</td>
+                  <td>{contract_address}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
     </section>
   );
 };

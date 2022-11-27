@@ -1,16 +1,29 @@
 import React from 'react';
+import { BsFillMoonFill, BsFillSunFill } from 'react-icons/bs';
 import Logo from '../../public/Logo/CryptoBlazeLogo.png';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FiMenu } from 'react-icons/fi';
 import { FaUserAlt } from 'react-icons/fa';
-import { BsFillSunFill } from 'react-icons/bs';
+import { useAuth } from '../../context/AuthContext';
 import { useState } from 'react';
 import { IoMdClose } from 'react-icons/io';
 import { navItems } from '../../routes';
+import { useDispatch } from 'react-redux';
+import { openLoginModal } from '../../redux/features/homeSlice';
+import LoginModal from '../LoginModal';
+import SignUpModal from '../SignUpModal';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
+import { FiGithub, FiTwitter } from 'react-icons/fi';
 
 const CollapseNav = () => {
   const [open, setOpen] = useState(false);
+  const { loginModal, signUpModal } = useSelector(
+    (store: RootState) => store.home
+  );
+  const dispatch = useDispatch();
+  const { user, logout, themeHandler, theme } = useAuth();
   return (
     <div className='relative lg:hidden'>
       <div className='flex items-center justify-between py-3'>
@@ -32,14 +45,30 @@ const CollapseNav = () => {
           CryptoBlaze
         </Link>{' '}
         <div className='flex gap-7 items-baseline  '>
-          <div>
-            <FaUserAlt className='w-[1.4rem] h-[1.4rem] cursor-pointer' />
-          </div>
-          <div>
-            {' '}
-            <BsFillSunFill className='w-[1.4rem] h-[1.4rem] hover:text-blue cursor-pointer' />
+          {user ? (
+            <Link href='/account'>
+              <FaUserAlt className='w-[1.4rem] h-[1.4rem] ' />
+            </Link>
+          ) : (
+            <div
+              onClick={() => {
+                dispatch(openLoginModal());
+              }}
+            >
+              <FaUserAlt className='w-[1.4rem] h-[1.4rem] cursor-pointer' />
+            </div>
+          )}
+
+          <div onClick={themeHandler} className='cursor-pointer '>
+            {theme === 'dark-theme' ? (
+              <BsFillSunFill className='w-[18px] h-[18px] hover:text-blue' />
+            ) : (
+              <BsFillMoonFill className='w-[18px] h-[18px] hover:text-blue' />
+            )}
           </div>
         </div>
+        {loginModal && <LoginModal />}
+        {signUpModal && <SignUpModal />}
       </div>
 
       {open && (
@@ -66,12 +95,26 @@ const CollapseNav = () => {
               CryptoBlaze
             </Link>{' '}
             <div className='flex gap-7 items-baseline  '>
-              <div>
-                <FaUserAlt className='w-[1.4rem] h-[1.4rem]' />
-              </div>
-              <div>
-                {' '}
-                <BsFillSunFill className='w-[1.4rem] h-[1.4rem] hover:text-blue' />
+              {user ? (
+                <Link href='/account'>
+                  <FaUserAlt className='w-[1.4rem] h-[1.4rem] ' />
+                </Link>
+              ) : (
+                <div
+                  onClick={() => {
+                    dispatch(openLoginModal());
+                  }}
+                >
+                  <FaUserAlt className='w-[1.4rem] h-[1.4rem] cursor-pointer' />
+                </div>
+              )}
+
+              <div onClick={themeHandler} className='cursor-pointer '>
+                {theme === 'dark-theme' ? (
+                  <BsFillSunFill className='w-[18px] h-[18px] hover:text-blue' />
+                ) : (
+                  <BsFillMoonFill className='w-[18px] h-[18px] hover:text-blue' />
+                )}
               </div>
             </div>
           </div>
@@ -100,6 +143,33 @@ const CollapseNav = () => {
               </div>
             );
           })}
+          <div className='mt-[64px] mb-[32px] text-right'>
+            <button
+              className='bg-blue  py-1 px-3 text-[#fff] rounded hover:bg-hover duration-150 ease-in-out'
+              onClick={() => {
+                logout();
+              }}
+            >
+              Logout
+            </button>
+          </div>
+          <div className='justify-center flex items-center gap-3 mb-[16px]'>
+            <a
+              href='https://twitter.com/Airshokes'
+              target='_blank'
+              rel='noreferrer'
+            >
+              <FiTwitter className='text-blue' />
+            </a>
+
+            <a
+              href='https://github.com/shokes'
+              target='_blank'
+              rel='noreferrer'
+            >
+              <FiGithub className='text-blue' />
+            </a>
+          </div>
         </div>
       )}
     </div>

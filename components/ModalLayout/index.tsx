@@ -17,7 +17,7 @@ const ModalLayout = ({ children }: LayoutTypes) => {
       }}
     >
       <div
-        className='fixed translate-x-1/2 right-1/2 rounded top-3 px-[22px] py-[48px]  bg-extraLightBlue  w-[384px] h-[580px] z-[999]'
+        className='fixed translate-x-1/2 right-1/2 rounded top-3 px-[22px] py-[48px]  bg-extraLightBlue  w-full h-full lg:w-[384px] lg:h-[580px] z-[999]'
         onClick={(e) => {
           e.stopPropagation();
         }}
