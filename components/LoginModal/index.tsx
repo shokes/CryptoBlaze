@@ -53,6 +53,7 @@ const LoginModal = () => {
               value={data.email}
               required
               type='Email'
+              placeholder='Email'
               className='h-[42px] rounded border-blue border p-2 text-[#343a40]'
             />
           </div>

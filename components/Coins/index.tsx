@@ -62,104 +62,105 @@ const Coins = ({ cryptos, searchValue, inputHandler }: CoinsTypes) => {
             onChange={inputHandler}
           />
         </div>
+        <div className='table_wrapper'>
+          <table>
+            <thead className='lg:sticky lg:top-0 bg-extraLightBlue animation'>
+              <tr>
+                <th></th>
+                <th>Rank</th>
+                <th>Coin</th>
+                <th></th>
+                <th>Price</th>
+                <th>24h</th>
+                <th>24h Volume</th>
+                <th>Market</th>
+                <th>Last 7 Days</th>
+              </tr>
+            </thead>
 
-        <table className='overflow-x-auto'>
-          <thead className='lg:sticky lg:top-0 bg-extraLightBlue animation'>
-            <tr>
-              <th></th>
-              <th>Rank</th>
-              <th>Coin</th>
-              <th></th>
-              <th>Price</th>
-              <th>24h</th>
-              <th>24h Volume</th>
-              <th>Market</th>
-              <th>Last 7 Days</th>
-            </tr>
-          </thead>
+            <tbody>
+              {cryptos?.map((crypto) => {
+                const {
+                  id,
+                  name,
+                  image,
+                  symbol,
+                  current_price: price,
+                  price_change_percentage_24h,
+                  total_volume,
+                  market_cap,
+                  sparkline_in_7d,
+                  market_cap_rank,
+                } = crypto;
 
-          <tbody>
-            {cryptos?.map((crypto) => {
-              const {
-                id,
-                name,
-                image,
-                symbol,
-                current_price: price,
-                price_change_percentage_24h,
-                total_volume,
-                market_cap,
-                sparkline_in_7d,
-                market_cap_rank,
-              } = crypto;
-
-              return (
-                <tr key={market_cap_rank}>
-                  <td>
-                    {user ? (
-                      portfolio.find((item) => item.name === name) ? (
-                        <RiStarSFill
-                          className='w-[24px] h-[24px] cursor-pointer'
-                          onClick={() => {
-                            dispatch(removeFromPortfolio(crypto));
-                            removedAlert(name);
-                          }}
-                        />
+                return (
+                  <tr key={market_cap_rank}>
+                    <td>
+                      {user ? (
+                        portfolio.find((item) => item.name === name) ? (
+                          <RiStarSFill
+                            className='w-[24px] h-[24px] cursor-pointer'
+                            onClick={() => {
+                              dispatch(removeFromPortfolio(crypto));
+                              removedAlert(name);
+                            }}
+                          />
+                        ) : (
+                          <RiStarSLine
+                            className='w-[24px] h-[24px] cursor-pointer'
+                            onClick={() => {
+                              dispatch(addToPortfolio(crypto));
+                              addedAlert(name);
+                            }}
+                          />
+                        )
                       ) : (
                         <RiStarSLine
                           className='w-[24px] h-[24px] cursor-pointer'
-                          onClick={() => {
-                            dispatch(addToPortfolio(crypto));
-                            addedAlert(name);
-                          }}
+                          onClick={() => dispatch(openLoginModal())}
                         />
-                      )
-                    ) : (
-                      <RiStarSLine
-                        className='w-[24px] h-[24px] cursor-pointer'
-                        onClick={() => dispatch(openLoginModal())}
+                      )}
+                    </td>
+                    <td>{market_cap_rank}</td>
+                    <td className='flex gap-3 items-center'>
+                      <Image
+                        src={image}
+                        alt={name}
+                        width={30}
+                        height={30}
+                        className='w-auto h-auto'
                       />
-                    )}
-                  </td>
-                  <td>{market_cap_rank}</td>
-                  <td className='flex gap-3 items-center'>
-                    <Image
-                      src={image}
-                      alt={name}
-                      width={30}
-                      height={30}
-                      className='w-auto h-auto'
-                    />
-                    <Link
-                      href={`coins/${id}`}
-                      className='hover:underline underline-offset-2 hover:text-blue duration-150 ease-in-out '
+                      <Link
+                        href={`coins/${id}`}
+                        className='hover:underline underline-offset-2 hover:text-blue duration-150 ease-in-out '
+                      >
+                        {name}
+                      </Link>
+                    </td>
+                    <td className='uppercase text-sm'>{symbol}</td>
+                    <td>${price.toLocaleString()}</td>
+                    <td
+                      className={`${
+                        price_change_percentage_24h > 0
+                          ? 'text-green'
+                          : 'text-red'
+                      }`}
                     >
-                      {name}
-                    </Link>
-                  </td>
-                  <td className='uppercase text-sm'>{symbol}</td>
-                  <td>${price.toLocaleString()}</td>
-                  <td
-                    className={`${
-                      price_change_percentage_24h > 0
-                        ? 'text-green'
-                        : 'text-red'
-                    }`}
-                  >
-                    {price_change_percentage_24h.toFixed(2)}%
-                  </td>
-                  <td>${total_volume.toLocaleString()}</td>
-                  <td>${market_cap.toLocaleString()}</td>
-                  <td>
-                    <Sparklines data={sparkline_in_7d.price}>
-                      <SparklinesLine color='#1864ab' />
-                    </Sparklines>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+                      {price_change_percentage_24h.toFixed(2)}%
+                    </td>
+                    <td>${total_volume.toLocaleString()}</td>
+                    <td>${market_cap.toLocaleString()}</td>
+                    <td>
+                      <Sparklines data={sparkline_in_7d.price}>
+                        <SparklinesLine color='#1864ab' />
+                      </Sparklines>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
         <motion.div
           variants={infiniteRotate}
           animate='rotate'

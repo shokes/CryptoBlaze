@@ -46,6 +46,11 @@ body,
   --text: #f8f9fa;
 }
 
+input[type='text'] {
+  background-color: #ffff;
+  /* color: white; */
+}
+
 body {
   background: var(--extraLightBlue);
   font-family: 'Open Sans', sans-serif;
