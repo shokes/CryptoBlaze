@@ -10,7 +10,7 @@ const ModalLayout = ({ children }: LayoutTypes) => {
   const dispatch = useDispatch();
   return (
     <div
-      className='overlay'
+      // className='overlay'
       onClick={() => {
         dispatch(closeLoginModal());
         dispatch(closeSignUpModal());
