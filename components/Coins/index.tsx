@@ -62,7 +62,7 @@ const Coins = ({ cryptos, searchValue, inputHandler }: CoinsTypes) => {
             onChange={inputHandler}
           />
         </div>
-        <div className='table_wrapper'>
+        <div className='overflow-auto'>
           <table>
             <thead className='lg:sticky lg:top-0 bg-extraLightBlue animation'>
               <tr>

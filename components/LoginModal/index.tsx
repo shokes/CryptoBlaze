@@ -54,7 +54,7 @@ const LoginModal = () => {
               required
               type='Email'
               placeholder='Email'
-              className='h-[42px] rounded border-blue border p-2 text-[#343a40]'
+              className='h-[42px] rounded border-blue border p-2 '
             />
           </div>
           <div
@@ -72,7 +72,7 @@ const LoginModal = () => {
               required
               type='password'
               placeholder='Password'
-              className='h-[42px] rounded border border-blue p-2 text-[#343a40]'
+              className='h-[42px] rounded border border-blue p-2 '
             />
           </div>
           {errorMessage && (
