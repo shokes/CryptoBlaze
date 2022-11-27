@@ -70,7 +70,7 @@ const SignUpModal = () => {
               value={data.email}
               required
               type='Email'
-              className='h-[42px] rounded border-blue border p-2'
+              className='h-[42px] rounded border-blue border p-2 text-[#343a40]'
             />
           </div>
 
@@ -91,7 +91,7 @@ const SignUpModal = () => {
               required
               type='password'
               placeholder='Password'
-              className='h-[42px] rounded border border-blue p-2'
+              className='h-[42px] rounded border border-blue p-2 text-[#343a40]'
             />
           </div>
           {passwordLengthError && (

@@ -53,7 +53,7 @@ const LoginModal = () => {
               value={data.email}
               required
               type='Email'
-              className='h-[42px] rounded border-blue border p-2'
+              className='h-[42px] rounded border-blue border p-2 text-[#343a40]'
             />
           </div>
           <div
@@ -71,7 +71,7 @@ const LoginModal = () => {
               required
               type='password'
               placeholder='Password'
-              className='h-[42px] rounded border border-blue p-2'
+              className='h-[42px] rounded border border-blue p-2 text-[#343a40]'
             />
           </div>
           {errorMessage && (
