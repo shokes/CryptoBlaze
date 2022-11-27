@@ -45,14 +45,6 @@ body,
   --red: #fa5252;
   --text: #f8f9fa;
 }
-/* 
-input[type='text'] {
-  background-color: #ffff;
-  /* color: white; */
-*/ input {
-  background-color: blue;
-  background: blue;
-}
 
 body {
   background: var(--extraLightBlue);

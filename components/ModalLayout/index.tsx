@@ -5,12 +5,11 @@ import {
 } from '../../redux/features/homeSlice';
 import LayoutTypes from '../../interfaces/layoutTypes';
 import { useDispatch } from 'react-redux';
-
+// className='overlay'
 const ModalLayout = ({ children }: LayoutTypes) => {
   const dispatch = useDispatch();
   return (
     <div
-      // className='overlay'
       onClick={() => {
         dispatch(closeLoginModal());
         dispatch(closeSignUpModal());
