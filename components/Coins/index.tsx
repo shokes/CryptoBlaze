@@ -137,7 +137,7 @@ const Coins = ({ cryptos, searchValue, inputHandler }: CoinsTypes) => {
                         {name}
                       </Link>
                     </td>
-                    <td className='uppercase text-sm'>{symbol}</td>
+                    <td className='uppercase text-sm '>{symbol}</td>
                     <td>${price.toLocaleString()}</td>
                     <td
                       className={`${
