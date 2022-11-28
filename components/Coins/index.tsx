@@ -58,7 +58,7 @@ const Coins = ({ cryptos, searchValue, inputHandler }: CoinsTypes) => {
             ref={searchValue}
             type='text'
             placeholder='Search...'
-            className=' border border-blue rounded w-full bg-[#c92a2a] lg:w-[320px] h-[42px] p-2 text-[#343a40]'
+            className=' border border-blue rounded w-full bg-[#fff] lg:w-[320px] h-[42px] p-2 text-[#343a40]'
             onChange={inputHandler}
           />
         </div>
