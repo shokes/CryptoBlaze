@@ -50,7 +50,7 @@ const Coins = ({ cryptos, searchValue, inputHandler }: CoinsTypes) => {
   return (
     <section>
       <div className='relative'>
-        <div className='flex flex-col lg:flex-row  gap-3 lg:gap-0  lg:items-center lg:justify-between  lg:mb-[40px]'>
+        <div className='flex flex-col lg:flex-row mb-[22.4px] gap-3 lg:gap-0  lg:items-center lg:justify-between  lg:mb-[40px]'>
           <h2 className='font-bold text:lg lg:text-xl'>
             <FadeInText text='Cryptocurrency Prices by Market Cap' />
           </h2>
@@ -69,7 +69,7 @@ const Coins = ({ cryptos, searchValue, inputHandler }: CoinsTypes) => {
                 <th></th>
                 <th className='nowrap '>Rank</th>
                 <th className='nowrap '>Coin</th>
-                {/* <th></th> */}
+
                 <th className='nowrap '>Price</th>
                 <th className='nowrap '>24h</th>
                 <th className='nowrap '>24h Volume</th>

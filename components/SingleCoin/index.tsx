@@ -99,10 +99,10 @@ const SingleCoin = ({ coin, loading }: SingleCoinTypes) => {
                   <a
                     href={homepage}
                     target='_blank'
-                    className='text-sm'
+                    className='text-blue underline underline-offset-2'
                     rel='noreferrer'
                   >
-                    {homepage}
+                    Live
                   </a>{' '}
                 </span>
                 <span className='flex items-center gap-1'>
@@ -110,10 +110,10 @@ const SingleCoin = ({ coin, loading }: SingleCoinTypes) => {
                   <a
                     href={subreddit_url}
                     target='_blank'
-                    className='text-sm'
+                    className='text-blue underline underline-offset-2'
                     rel='noreferrer'
                   >
-                    {subreddit_url}
+                    Reddit
                   </a>
                 </span>
               </div>

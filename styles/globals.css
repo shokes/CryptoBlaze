@@ -205,6 +205,10 @@ th {
     margin-right: auto;
   }
 
+  .hover:hover {
+    box-shadow: 0 3px var(--extraLightBlue);
+  }
+
   html {
     font-size: 95%;
   }

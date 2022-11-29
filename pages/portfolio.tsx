@@ -4,8 +4,6 @@ import Link from 'next/link';
 import { BiRightArrow } from 'react-icons/bi';
 import Footer from '../components/Footer';
 import Head from 'next/head';
-import Light from '../public/Images/light.png';
-import Dark from '../public/Images/dark.png';
 import Image from 'next/image';
 import { openLoginModal } from '../redux/features/homeSlice';
 import { openSignUpModal } from '../redux/features/homeSlice';
@@ -15,10 +13,11 @@ import { FadeIn } from '../components/Animations/fadeIn';
 import { FadeInText } from '../components/Animations/fadeInText';
 import { CustomCursor } from '../components/CustomCursor';
 import CollapseNav from '../components/Navigation/CollapseNav';
+import Homepage from '../public/Images/homepage.png';
 
 const Portfolio = () => {
   const dispatch = useDispatch();
-  const { user, theme } = useAuth();
+  const { user } = useAuth();
 
   return (
     <section>
@@ -90,7 +89,7 @@ const Portfolio = () => {
           </div>
 
           <Image
-            src={theme === 'light-theme' ? Light : Dark}
+            src={Homepage}
             alt='preview of web app on macbook pro'
             width={550}
             height={550}
