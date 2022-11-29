@@ -5,6 +5,7 @@ import btc from '../../public/Logo/BTCLogo.png';
 import Link from 'next/link';
 import Loading from '../Loading';
 import { FadeInText } from '../Animations/fadeInText';
+import { FadeIn } from '../Animations/fadeIn';
 
 const TrendingCoins = ({ cryptos, loading }: TrendingCoinsTypes) => {
   if (loading) {
@@ -35,15 +36,25 @@ const TrendingCoins = ({ cryptos, loading }: TrendingCoinsTypes) => {
                 className='flex justify-between items-center trending  hover:text-blue duration-150 ease-in-out'
               >
                 <div className='flex items-center gap-3 text-sm '>
-                  <Image alt={name} src={large} width={50} height={50} />
-                  <div className='flex flex-col'>
-                    <h4 className='font-bold'>{name}</h4>
-                    <span>{symbol}</span>
-                  </div>
+                  <FadeIn>
+                    <Image alt={name} src={large} width={50} height={50} />
+                  </FadeIn>
+                  <FadeIn>
+                    <div className='flex flex-col'>
+                      <h4 className='font-bold'>{name}</h4>
+                      <span>{symbol}</span>
+                    </div>
+                  </FadeIn>
                 </div>
                 <div className='flex items-center gap-2'>
-                  <Image src={btc} alt='btc logo' width={20} height={20} />
-                  <span>{price_btc.toFixed(7)}</span>
+                  <FadeIn>
+                    {' '}
+                    <Image src={btc} alt='btc logo' width={20} height={20} />
+                  </FadeIn>
+
+                  <FadeIn>
+                    <span>{price_btc.toFixed(7)}</span>
+                  </FadeIn>
                 </div>
               </Link>
             );

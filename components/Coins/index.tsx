@@ -96,52 +96,63 @@ const Coins = ({ cryptos, searchValue, inputHandler }: CoinsTypes) => {
                 return (
                   <tr key={market_cap_rank}>
                     <td>
-                      {user ? (
-                        portfolio.find((item) => item.name === name) ? (
-                          <RiStarSFill
-                            className='w-[24px] h-[24px] cursor-pointer'
-                            onClick={() => {
-                              dispatch(removeFromPortfolio(crypto));
-                              removedAlert(name);
-                            }}
-                          />
+                      <FadeIn>
+                        {user ? (
+                          portfolio.find((item) => item.name === name) ? (
+                            <RiStarSFill
+                              className='w-[24px] h-[24px] cursor-pointer'
+                              onClick={() => {
+                                dispatch(removeFromPortfolio(crypto));
+                                removedAlert(name);
+                              }}
+                            />
+                          ) : (
+                            <RiStarSLine
+                              className='w-[24px] h-[24px] cursor-pointer'
+                              onClick={() => {
+                                dispatch(addToPortfolio(crypto));
+                                addedAlert(name);
+                              }}
+                            />
+                          )
                         ) : (
                           <RiStarSLine
                             className='w-[24px] h-[24px] cursor-pointer'
-                            onClick={() => {
-                              dispatch(addToPortfolio(crypto));
-                              addedAlert(name);
-                            }}
+                            onClick={() => dispatch(openLoginModal())}
                           />
-                        )
-                      ) : (
-                        <RiStarSLine
-                          className='w-[24px] h-[24px] cursor-pointer'
-                          onClick={() => dispatch(openLoginModal())}
+                        )}
+                      </FadeIn>
+                    </td>
+                    <td>
+                      {' '}
+                      <FadeIn>{market_cap_rank}</FadeIn>
+                    </td>
+                    <td className='flex gap-3 items-center mr-[32px] lg:mr-[0px]'>
+                      <FadeIn>
+                        <Image
+                          src={image}
+                          alt={name}
+                          width={30}
+                          height={30}
+                          className='w-auto h-auto'
                         />
-                      )}
+                      </FadeIn>
+                      <FadeIn>
+                        <div className='flex flex-col lg:flex-row lg:gap-3 lg:items-baseline'>
+                          <Link
+                            href={`coins/${id}`}
+                            className='hover:underline underline-offset-2 hover:text-blue duration-150 ease-in-out '
+                          >
+                            {name}
+                          </Link>
+                          <span className='text-xs uppercase'> {symbol} </span>
+                        </div>{' '}
+                      </FadeIn>
                     </td>
-                    <td>{market_cap_rank}</td>
-                    <td className='flex gap-3 items-center mr-[32px]'>
-                      <Image
-                        src={image}
-                        alt={name}
-                        width={30}
-                        height={30}
-                        className='w-auto h-auto'
-                      />
-                      <div className='flex flex-col lg:flex-row lg:gap-3 lg:items-baseline'>
-                        <Link
-                          href={`coins/${id}`}
-                          className='hover:underline underline-offset-2 hover:text-blue duration-150 ease-in-out '
-                        >
-                          {name}
-                        </Link>
-                        <span className='text-xs uppercase'> {symbol} </span>
-                      </div>
+
+                    <td>
+                      <FadeIn>${price.toLocaleString()}</FadeIn>
                     </td>
-                    {/* <td className='uppercase text-sm '>{symbol}</td> */}
-                    <td>${price.toLocaleString()}</td>
                     <td
                       className={`${
                         price_change_percentage_24h > 0
@@ -149,14 +160,24 @@ const Coins = ({ cryptos, searchValue, inputHandler }: CoinsTypes) => {
                           : 'text-red'
                       }`}
                     >
-                      {price_change_percentage_24h.toFixed(2)}%
+                      <FadeIn>
+                        {' '}
+                        {price_change_percentage_24h.toFixed(2)}%
+                      </FadeIn>
                     </td>
-                    <td>${total_volume.toLocaleString()}</td>
-                    <td>${market_cap.toLocaleString()}</td>
                     <td>
-                      <Sparklines data={sparkline_in_7d.price}>
-                        <SparklinesLine color='#1864ab' />
-                      </Sparklines>
+                      <FadeIn>${total_volume.toLocaleString()} </FadeIn>{' '}
+                    </td>
+                    <td>
+                      <FadeIn>${market_cap.toLocaleString()}</FadeIn>{' '}
+                    </td>
+                    <td>
+                      <FadeIn>
+                        {' '}
+                        <Sparklines data={sparkline_in_7d.price}>
+                          <SparklinesLine color='#1864ab' />
+                        </Sparklines>
+                      </FadeIn>
                     </td>
                   </tr>
                 );

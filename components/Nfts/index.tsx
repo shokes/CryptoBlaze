@@ -1,5 +1,6 @@
 import React from 'react';
 import NftsTypes from '../../interfaces/nftsTypes';
+import { FadeIn } from '../Animations/fadeIn';
 import { FadeInText } from '../Animations/fadeInText';
 import Loading from '../Loading';
 
@@ -32,10 +33,19 @@ const Nfts = ({ nftList, loading }: NftsTypes) => {
 
               return (
                 <tr key={id}>
-                  <td>{index + 1}</td>
-                  <td>{name}</td>
-                  <td>{asset_platform_id}</td>
-                  <td>{contract_address}</td>
+                  <td>
+                    {' '}
+                    <FadeIn>{index + 1}</FadeIn>
+                  </td>
+                  <td>
+                    <FadeIn>{name}</FadeIn>
+                  </td>
+                  <td>
+                    <FadeIn>{asset_platform_id}</FadeIn>
+                  </td>
+                  <td>
+                    <FadeIn> {contract_address}</FadeIn>
+                  </td>
                 </tr>
               );
             })}
