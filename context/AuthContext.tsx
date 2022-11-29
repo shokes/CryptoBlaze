@@ -45,31 +45,6 @@ export const AuthContextProvider = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const getStorageTheme = () => {
-    if (typeof window !== 'undefined') {
-      let theme: string | null = 'light-theme';
-      if (localStorage.getItem('theme')) {
-        theme = localStorage.getItem('theme');
-      }
-      return theme;
-    }
-  };
-
-  const [theme, setTheme] = useState<any>(getStorageTheme());
-
-  const themeHandler = () => {
-    if (theme === 'dark-theme') {
-      setTheme('light-theme');
-    } else {
-      setTheme('dark-theme');
-    }
-  };
-
-  useEffect(() => {
-    document.documentElement.className = theme;
-    localStorage.setItem('theme', theme);
-  }, [theme]);
-
   const signup = (email: string, password: string) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
@@ -102,9 +77,7 @@ export const AuthContextProvider = ({
   };
 
   return (
-    <AuthContext.Provider
-      value={{ user, login, themeHandler, theme, signup, logout, googleSignIn }}
-    >
+    <AuthContext.Provider value={{ user, login, signup, logout, googleSignIn }}>
       {children}
     </AuthContext.Provider>
   );

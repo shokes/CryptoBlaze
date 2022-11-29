@@ -1,4 +1,3 @@
-import { BsFillMoonFill, BsFillSunFill } from 'react-icons/bs';
 import Logo from '../../public/Logo/CryptoBlazeLogo.png';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -17,7 +16,7 @@ const Navigation = () => {
   );
   const dispatch = useDispatch();
 
-  const { user, logout, themeHandler, theme } = useAuth();
+  const { user, logout } = useAuth();
 
   return (
     <section className='relative hidden lg:block'>
@@ -63,13 +62,6 @@ const Navigation = () => {
             </div>
           );
         })}
-        <div onClick={themeHandler} className='cursor-pointer '>
-          {theme === 'dark-theme' ? (
-            <BsFillSunFill className='w-[18px] h-[18px] hover:text-blue' />
-          ) : (
-            <BsFillMoonFill className='w-[18px] h-[18px] hover:text-blue' />
-          )}
-        </div>
         <Link
           href='/portfolio'
           className='hover:text-blue duration-150 ease-in-out'

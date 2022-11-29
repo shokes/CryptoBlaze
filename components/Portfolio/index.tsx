@@ -13,7 +13,7 @@ const Portfolio = ({ portfolio }: PortfolioTypes) => {
   if (portfolio.length === 0) {
     return (
       <div>
-        <h2 className='text-center text-xl'>
+        <h2 className='text-center text-lg lg:text-xl'>
           You have no coins currently in your portfolio
         </h2>
       </div>
@@ -27,7 +27,7 @@ const Portfolio = ({ portfolio }: PortfolioTypes) => {
               <tr>
                 <th>Rank</th>
                 <th>Coin</th>
-                <th></th>
+
                 <th>Price</th>
                 <th>24h</th>
                 <th>24h Volume</th>
@@ -63,14 +63,16 @@ const Portfolio = ({ portfolio }: PortfolioTypes) => {
                         height={30}
                         className='w-auto h-auto'
                       />
-                      <Link
-                        href={`coins/${id}`}
-                        className='hover:underline underline-offset-2'
-                      >
-                        {name}
-                      </Link>
+                      <div className='flex flex-col lg:flex-row lg:gap-3 lg:items-baseline'>
+                        <Link
+                          href={`coins/${id}`}
+                          className='hover:underline underline-offset-2 hover:text-blue duration-150 ease-in-out '
+                        >
+                          {name}
+                        </Link>
+                        <span className='text-xs uppercase'> {symbol} </span>
+                      </div>
                     </td>
-                    <td className='uppercase text-sm'>{symbol}</td>
                     <td>{price ? '$' + price.toLocaleString() : 'N/A'}</td>
                     <td
                       className={`${

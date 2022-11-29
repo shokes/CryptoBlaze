@@ -17,26 +17,6 @@ body,
 }
 
 :root {
-  --extraLightBlue: #e7f5ff;
-  --lightBlue: #a5d8ff;
-  --hover: #1c7ed6;
-  --blue: #1864ab;
-  --green: #2f9e44;
-  --red: #e03131;
-  --text: #343a40;
-}
-
-.light-theme {
-  --extraLightBlue: #e7f5ff;
-  --lightBlue: #a5d8ff;
-  --hover: #1c7ed6;
-  --blue: #1864ab;
-  --green: #2f9e44;
-  --red: #e03131;
-  --text: #343a40;
-}
-
-.dark-theme {
   --extraLightBlue: #0f0f0f;
   --lightBlue: #e7f5ff;
   --hover: #339af0;

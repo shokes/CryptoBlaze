@@ -69,7 +69,7 @@ const Coins = ({ cryptos, searchValue, inputHandler }: CoinsTypes) => {
                 <th></th>
                 <th className='nowrap '>Rank</th>
                 <th className='nowrap '>Coin</th>
-                <th></th>
+                {/* <th></th> */}
                 <th className='nowrap '>Price</th>
                 <th className='nowrap '>24h</th>
                 <th className='nowrap '>24h Volume</th>
@@ -130,14 +130,17 @@ const Coins = ({ cryptos, searchValue, inputHandler }: CoinsTypes) => {
                         height={30}
                         className='w-auto h-auto'
                       />
-                      <Link
-                        href={`coins/${id}`}
-                        className='hover:underline underline-offset-2 hover:text-blue duration-150 ease-in-out '
-                      >
-                        {name}
-                      </Link>
+                      <div className='flex flex-col lg:flex-row lg:gap-3 lg:items-baseline'>
+                        <Link
+                          href={`coins/${id}`}
+                          className='hover:underline underline-offset-2 hover:text-blue duration-150 ease-in-out '
+                        >
+                          {name}
+                        </Link>
+                        <span className='text-xs uppercase'> {symbol} </span>
+                      </div>
                     </td>
-                    <td className='uppercase text-sm '>{symbol}</td>
+                    {/* <td className='uppercase text-sm '>{symbol}</td> */}
                     <td>${price.toLocaleString()}</td>
                     <td
                       className={`${

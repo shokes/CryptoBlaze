@@ -1,5 +1,4 @@
 import React from 'react';
-import { BsFillMoonFill, BsFillSunFill } from 'react-icons/bs';
 import Logo from '../../public/Logo/CryptoBlazeLogo.png';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -59,13 +58,7 @@ const CollapseNav = () => {
             </div>
           )}
 
-          <div onClick={themeHandler} className='cursor-pointer '>
-            {theme === 'dark-theme' ? (
-              <BsFillSunFill className='w-[18px] h-[18px] hover:text-blue' />
-            ) : (
-              <BsFillMoonFill className='w-[18px] h-[18px] hover:text-blue' />
-            )}
-          </div>
+         
         </div>
         {loginModal && <LoginModal />}
         {signUpModal && <SignUpModal />}
@@ -109,13 +102,7 @@ const CollapseNav = () => {
                 </div>
               )}
 
-              <div onClick={themeHandler} className='cursor-pointer '>
-                {theme === 'dark-theme' ? (
-                  <BsFillSunFill className='w-[18px] h-[18px] hover:text-blue' />
-                ) : (
-                  <BsFillMoonFill className='w-[18px] h-[18px] hover:text-blue' />
-                )}
-              </div>
+    
             </div>
           </div>
 
