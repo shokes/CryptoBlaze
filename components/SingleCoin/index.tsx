@@ -190,7 +190,7 @@ const SingleCoin = ({ coin, loading }: SingleCoinTypes) => {
               <div className='grid grid-cols-3 gap-[64px] '>
                 <div>
                   <h2>Market Rank</h2>
-                  <span className='font-semibold'>{market_cap_rank}</span>
+                  <span className='font-semibold '>{market_cap_rank}</span>
                 </div>
                 <div>
                   <h2>Hashing Algorithm</h2>
@@ -205,38 +205,70 @@ const SingleCoin = ({ coin, loading }: SingleCoinTypes) => {
                 </div>
                 <div>
                   <h2>Price Change (24h)</h2>
-                  <span className='font-semibold'>
+                  <span
+                    className={`font-semibold ${
+                      price_change_percentage_24h > 0
+                        ? 'text-green'
+                        : 'text-red'
+                    }`}
+                  >
                     {price_change_percentage_24h.toFixed(2)}%
                   </span>
                 </div>
                 <div>
                   <h2>Price Change (7d)</h2>
-                  <span className='font-semibold'>
+                  <span
+                    className={`font-semibold ${
+                      price_change_percentage_7d > 0 ? 'text-green' : 'text-red'
+                    }`}
+                  >
                     {' '}
                     {price_change_percentage_7d.toFixed(2)}%
                   </span>
                 </div>
                 <div>
                   <h2>Price Change (14d)</h2>
-                  <span className='font-semibold'>
+                  <span
+                    className={`font-semibold ${
+                      price_change_percentage_14d > 0
+                        ? 'text-green'
+                        : 'text-red'
+                    }`}
+                  >
                     {price_change_percentage_14d.toFixed(2)}%
                   </span>
                 </div>
                 <div>
                   <h2>Price Change (30d)</h2>
-                  <span className='font-semibold'>
+                  <span
+                    className={`font-semibold ${
+                      price_change_percentage_30d > 0
+                        ? 'text-green'
+                        : 'text-red'
+                    }`}
+                  >
                     {price_change_percentage_30d.toFixed(2)}%
                   </span>
                 </div>
                 <div>
                   <h2>Price Change (60d)</h2>
-                  <span className='font-semibold'>
+                  <span
+                    className={`font-semibold ${
+                      price_change_percentage_60d > 0
+                        ? 'text-green'
+                        : 'text-red'
+                    }`}
+                  >
                     {price_change_percentage_60d.toFixed(2)}%
                   </span>
                 </div>
                 <div>
                   <h2>Price Change (1y)</h2>
-                  <span className='font-semibold'>
+                  <span
+                    className={`font-semibold ${
+                      price_change_percentage_1y > 0 ? 'text-green' : 'text-red'
+                    }`}
+                  >
                     {price_change_percentage_1y.toFixed(2)}%
                   </span>
                 </div>
