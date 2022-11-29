@@ -81,7 +81,7 @@ const Footer = () => {
           href='https://twitter.com/Airshokes'
           target='_blank'
           rel='noreferrer'
-          className='hover:underline underline-offset-2'
+          className='hover:underline underline-offset-2 hover:text-blue  duration-150 ease-in-out'
         >
           OSHOKE
         </a>

@@ -55,7 +55,7 @@ const Portfolio = ({ portfolio }: PortfolioTypes) => {
                 return (
                   <tr key={market_cap_rank}>
                     <td>{market_cap_rank}</td>
-                    <td className='flex gap-3 items-center'>
+                    <td className='flex gap-3 items-center  mr-[32px] lg:mr-[0px]'>
                       <Image
                         src={image}
                         alt={name}

@@ -81,7 +81,7 @@ const SingleCoin = ({ coin, loading }: SingleCoinTypes) => {
               <BiLeftArrow /> Back
             </button>
           </div>
-          <div className='flex flex-col lg:flex-row gap-[40px] lg:gap-[160px] items-start mb-[112px]'>
+          <div className='flex flex-col lg:flex-row gap-[40px] lg:gap-[160px] justify-center items-start mb-[112px]'>
             <div className='flex items-center gap-3'>
               <Image src={image} alt={name} width={70} height={70} />
               <div>
