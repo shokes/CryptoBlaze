@@ -26,7 +26,7 @@ const Portfolio = () => {
   return (
     <section>
       <Head>
-        <title>CryptoBlaze - Portfolio</title>
+        <title>Portfolio</title>
       </Head>
       <div className='container pb-4'>
         {' '}

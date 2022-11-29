@@ -62,9 +62,9 @@ const Coins = ({ cryptos, searchValue, inputHandler }: CoinsTypes) => {
             onChange={inputHandler}
           />
         </div>
-        <div className='overflow-auto'>
+        <div className='overflow-auto lg:overflow-visible'>
           <table>
-            <thead className='lg:sticky lg:top-0 bg-extraLightBlue animation'>
+            <thead className='lg:sticky lg:top-0 bg-extraLightBlue '>
               <tr>
                 <th></th>
                 <th className='nowrap '>Rank</th>

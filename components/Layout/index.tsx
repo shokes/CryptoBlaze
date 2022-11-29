@@ -21,7 +21,6 @@ const Layout = ({ children, activePage }: LayoutTypes) => {
       {!isTouchDevice && <Progressbar />}
       <Head>
         <title>
-          CryptoBlaze -{' '}
           {activePage &&
             activePage.charAt(0).toUpperCase() + activePage.slice(1)}
         </title>

@@ -79,7 +79,7 @@ export const menuItems: MenuItemsTypes[] = [
     id: 2,
     title: 'Coins',
     url: '/',
-    path: 'home',
+    path: 'CryptoBlaze',
   },
 
   {
