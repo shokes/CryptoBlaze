@@ -5,7 +5,7 @@ export const CustomCursor = () => {
   const controls = useAnimation();
   const [cursorHasMoved, setCursorHasMoved] = useState(false);
 
-  const CUSTOM_CURSOR_RADIUS = 26;
+  const CUSTOM_CURSOR_RADIUS = 33;
 
   const trailMouse = ({ clientX, clientY }: MouseEvent) => {
     controls.start({
@@ -41,7 +41,7 @@ export const CustomCursor = () => {
     >
       <motion.div
         animate={controls}
-        className='absolute z-[200] h-14 w-14 -translate-x-1/2 -translate-y-1/2 rounded-full cursor-styling  '
+        className='absolute z-[200] h-[70px] w-[70px] -translate-x-1/2 -translate-y-1/2 rounded-full cursor-styling  '
       ></motion.div>
     </div>
   );

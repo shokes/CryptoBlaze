@@ -108,7 +108,7 @@ th {
 
 .cursor-styling {
   background: rgba(51, 154, 240, 0.3);
-  border: 1.2px solid var(--blue);
+  border: 1.8px solid var(--blue);
 }
 
 /* LOADER CSS */
