@@ -15,6 +15,7 @@ import { CustomCursor } from '../components/CustomCursor';
 import CollapseNav from '../components/Navigation/CollapseNav';
 import Homepage from '../public/Images/homepage.png';
 import { useIsTouchDevice } from '../hooks/useIsTouchDevice';
+import Progressbar from '../components/ProgressBar';
 
 const Portfolio = () => {
   const dispatch = useDispatch();
@@ -105,6 +106,7 @@ const Portfolio = () => {
         <Footer />
       </div>
       {!isTouchDevice && <CustomCursor />}
+      {!isTouchDevice && <Progressbar />}
     </section>
   );
 };

@@ -144,8 +144,8 @@ const SingleCoin = ({ coin, loading }: SingleCoinTypes) => {
                 />
               )}
               {user && portfolio.find((item) => item.name === name)
-                ? 'Remove from watch list'
-                : 'Add to watch list'}
+                ? 'Remove from Portfolio'
+                : 'Add to Portfolio'}
             </div>
           </div>
           <div>

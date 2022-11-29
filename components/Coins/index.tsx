@@ -122,7 +122,7 @@ const Coins = ({ cryptos, searchValue, inputHandler }: CoinsTypes) => {
                       )}
                     </td>
                     <td>{market_cap_rank}</td>
-                    <td className='flex gap-3 items-center'>
+                    <td className='flex gap-3 items-center mr-[32px]'>
                       <Image
                         src={image}
                         alt={name}
