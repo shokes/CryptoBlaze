@@ -13,8 +13,6 @@ import { useIsTouchDevice } from '../../hooks/useIsTouchDevice';
 import Progressbar from '../ProgressBar';
 
 const Layout = ({ children, activePage }: LayoutTypes) => {
-  const router = useRouter();
-
   const isTouchDevice = useIsTouchDevice();
 
   return (

@@ -24,7 +24,7 @@ const TrendingCoins = ({ cryptos, loading }: TrendingCoinsTypes) => {
           </h2>
         </div>
 
-        <div className='grid lg:grid-cols-3 grid-cols-1 md:grid-cols-2  gap-y-[54px] gap-x-[64px] '>
+        <div className='grid lg:grid-cols-3 grid-cols-1 md:grid-cols-2  gap-[64px] '>
           {cryptos?.map((crypto) => {
             const { large, symbol, name, price_btc, slug, id } = crypto.item;
 

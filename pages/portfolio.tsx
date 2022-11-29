@@ -14,10 +14,13 @@ import { FadeInText } from '../components/Animations/fadeInText';
 import { CustomCursor } from '../components/CustomCursor';
 import CollapseNav from '../components/Navigation/CollapseNav';
 import Homepage from '../public/Images/homepage.png';
+import { useIsTouchDevice } from '../hooks/useIsTouchDevice';
 
 const Portfolio = () => {
   const dispatch = useDispatch();
   const { user } = useAuth();
+
+  const isTouchDevice = useIsTouchDevice();
 
   return (
     <section>
@@ -94,13 +97,14 @@ const Portfolio = () => {
             width={550}
             height={550}
             placeholder='blur'
+            className='top-[3rem]'
           />
         </div>
       </div>
       <div className='container'>
         <Footer />
       </div>
-      <CustomCursor />
+      {!isTouchDevice && <CustomCursor />}
     </section>
   );
 };

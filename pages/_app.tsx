@@ -15,7 +15,6 @@ export default function App({ Component, pageProps }: AppProps) {
           <AuthContextProvider>
             <Toaster position='bottom-right' />
             <Component {...pageProps} />
-            {/* <AnimatePresence mode='wait'></AnimatePresence> */}
           </AuthContextProvider>
         </LenisProvider>
       </Provider>

@@ -43,7 +43,7 @@ const SignUpModal = () => {
         <h2 className='font-bold text-xl mb-2'>
           IT&apos;S FREE! Track your favorite coin easily 🚀
         </h2>
-        <span className='text-xs text-[#495057] '>
+        <span className='text-xs text-[#ced4da] '>
           By continuing, you agree to CryptoBlaze Terms of Service.
         </span>
 
