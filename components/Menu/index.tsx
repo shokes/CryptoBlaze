@@ -7,7 +7,7 @@ import { BsFillStarFill } from 'react-icons/bs';
 const Menu = ({ active }: MenuType) => {
   return (
     <div className='my-[40px] relative'>
-      <div className='flex items-center gap-[44px] lg:gap-[64px] overflow-x-auto  menu-items font-medium'>
+      <div className='flex items-center gap-[44px] lg:gap-[64px] overflow-x-auto pb-[3.4px] menu-items font-medium'>
         {menuItems.map((item) => {
           const { title, id, url } = item;
           return (

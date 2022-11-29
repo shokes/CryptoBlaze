@@ -64,7 +64,7 @@ const Navigation = () => {
         })}
         <Link
           href='/portfolio'
-          className='hover:text-blue duration-150 ease-in-out'
+          className='hover:text-blue duration-150 ease-in-out '
         >
           Portfolio
         </Link>

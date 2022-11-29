@@ -30,10 +30,10 @@ const Portfolio = ({ portfolio }: PortfolioTypes) => {
 
                 <th>Price</th>
                 <th>24h</th>
-                <th>24h Volume</th>
-                <th>Market</th>
-                <th>Last 7 Days</th>
-                <th>Remove Coin</th>
+                <th className='nowrap'>24h Volume</th>
+                <th className='nowrap'>Market</th>
+                <th className='nowrap'>Last 7 Days</th>
+                <th className='nowrap'>Remove Coin</th>
               </tr>
             </thead>
 
