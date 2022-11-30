@@ -15,7 +15,15 @@ const Portfolio = ({ portfolio }: PortfolioTypes) => {
     return (
       <div>
         <h2 className='text-center text-lg lg:text-xl'>
-          You have no coins currently in your portfolio
+          You have no coins currently in your portfolio, please save a coin to
+          add.{' '}
+          <Link
+            href='/'
+            className='text-blue hover:underline underline-offset-2'
+          >
+            {' '}
+            Click here to add coins
+          </Link>
         </h2>
       </div>
     );

@@ -113,7 +113,7 @@ const SingleCoin = ({ coin, loading }: SingleCoinTypes) => {
                     className='text-blue underline underline-offset-2'
                     rel='noreferrer'
                   >
-                    Reddit
+                    {subreddit_url && 'Reddit'}
                   </a>
                 </span>
               </div>
