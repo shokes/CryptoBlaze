@@ -10,7 +10,6 @@ const Menu = ({ active }: MenuType) => {
       <div className='flex items-center gap-[44px] lg:gap-[64px] overflow-x-auto pb-[3.4px] menu-items font-medium'>
         {menuItems.map((item) => {
           const { title, id, url, path } = item;
-          console.log(path);
 
           return (
             <Link

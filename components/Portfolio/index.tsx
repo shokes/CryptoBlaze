@@ -2,16 +2,12 @@ import { AiFillDelete } from 'react-icons/ai';
 import Link from 'next/link';
 import { Sparklines, SparklinesLine } from 'react-sparklines';
 import Image from 'next/image';
-import { removeFromPortfolio } from '../../redux/features/homeSlice';
-import { useDispatch } from 'react-redux';
 import PortfolioTypes from '../../interfaces/portfolioTypes';
 import { removedAlert } from '../Toasts';
 import { FadeIn } from '../Animations/fadeIn';
 
-const Portfolio = ({ portfolio }: PortfolioTypes) => {
-  const dispatch = useDispatch();
-
-  if (portfolio.length === 0) {
+const Portfolio = ({ savedCoin, removeFromPortfolio }: PortfolioTypes) => {
+  if (savedCoin?.length === 0) {
     return (
       <div>
         <h2 className='text-center text-lg lg:text-xl'>
@@ -47,13 +43,13 @@ const Portfolio = ({ portfolio }: PortfolioTypes) => {
             </thead>
 
             <tbody>
-              {portfolio?.map((crypto) => {
+              {savedCoin?.map((crypto) => {
                 const {
                   id,
                   name,
                   image,
                   symbol,
-                  current_price: price,
+                  price,
                   price_change_percentage_24h,
                   total_volume,
                   market_cap,
@@ -91,11 +87,7 @@ const Portfolio = ({ portfolio }: PortfolioTypes) => {
                       </div>
                     </td>
                     <td>
-                      {' '}
-                      <FadeIn>
-                        {' '}
-                        {price ? '$' + price.toLocaleString() : 'N/A'}
-                      </FadeIn>
+                      <FadeIn>{price}</FadeIn>
                     </td>
                     <td
                       className={`${
@@ -133,7 +125,7 @@ const Portfolio = ({ portfolio }: PortfolioTypes) => {
                           <AiFillDelete
                             className=' w-[32px] absolute -top-[19px] h-[32px] right-1/2 cursor-pointer'
                             onClick={() => {
-                              dispatch(removeFromPortfolio(crypto));
+                              removeFromPortfolio(crypto);
                               removedAlert(name);
                             }}
                           />

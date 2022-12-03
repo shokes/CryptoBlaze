@@ -4,27 +4,18 @@ import { useEffect } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
-import {
-  openLoginModal,
-  removeFromPortfolio,
-} from '../redux/features/homeSlice';
+import { openLoginModal } from '../redux/features/homeSlice';
 import { auth } from '../config/firebase';
-import { useSelector } from 'react-redux';
-import { RootState } from '../redux/store';
-import { useAuth } from '../context/AuthContext';
-import firebase from './../config/firebase';
 import Portfolio from '../components/Portfolio';
 import { FadeInText } from '../components/Animations/fadeInText';
+import { useAuth } from '../context/AuthContext';
 
 const Account = () => {
-  const { user } = useAuth();
-
-  // ref = firebase.firestore().coll;
+  const { user, savedCoin, removeFromPortfolio } = useAuth();
 
   const activePage = 'Account';
   const dispatch = useDispatch();
   const router = useRouter();
-  const { portfolio } = useSelector((store: RootState) => store.home);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -46,7 +37,10 @@ const Account = () => {
           <h2 className='font-bold text-xl mt-[64px] mb-[32px]'>
             <FadeInText text='My Portfolio' />
           </h2>
-          <Portfolio portfolio={portfolio} />
+          <Portfolio
+            savedCoin={savedCoin}
+            removeFromPortfolio={removeFromPortfolio}
+          />
         </div>
       </div>
     </Layout>

@@ -3,16 +3,10 @@ import { Sparklines, SparklinesLine } from 'react-sparklines';
 import Image from 'next/image';
 import CoinsTypes from '../../interfaces/coinsTypes';
 import Link from 'next/link';
-import {
-  addToPortfolio,
-  openLoginModal,
-  removeFromPortfolio,
-} from '../../redux/features/homeSlice';
+import { openLoginModal } from '../../redux/features/homeSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useAuth } from '../../context/AuthContext';
 import { RootState } from '../../redux/store';
-import { db } from '../../config/firebase';
-import { arrayUnion, doc, updateDoc } from 'firebase/firestore';
 import { motion, Variants } from 'framer-motion';
 import Loading from '../Loading';
 import { FadeInText } from '../Animations/fadeInText';
@@ -20,33 +14,13 @@ import { addedAlert, removedAlert } from '../Toasts';
 import { FadeIn } from '../Animations/fadeIn';
 
 const Coins = ({ cryptos, searchValue, inputHandler }: CoinsTypes) => {
-  const { user, theme } = useAuth();
+  const { user, addToPortfolio, removeFromPortfolio, savedCoin } = useAuth();
   const dispatch = useDispatch();
-  const { portfolio, loading } = useSelector((store: RootState) => store.home);
-
-  // const coinPath = doc(db, 'users', `${user?.email}`);
-
-  // const saveCoin = async () => {
-  //   if (user?.email) {
-  //     //   setSavedCoin(true);
-  //     await updateDoc(coinPath, {
-  //       portfolio: arrayUnion({
-  //         id: cryptos.id,
-  //         name: cryptos.name,
-  //         image: cryptos.image,
-  //         rank: cryptos.market_cap_rank,
-  //         symbol: cryptos.symbol,
-  //       }),
-  //     });
-  //   } else {
-  //     // setSignInModalOpen(true);
-  //   }
-  // };
+  const { loading } = useSelector((store: RootState) => store.home);
 
   if (loading) {
     return <Loading />;
   }
-
   return (
     <section>
       <div className='relative'>
@@ -94,15 +68,17 @@ const Coins = ({ cryptos, searchValue, inputHandler }: CoinsTypes) => {
                 } = crypto;
 
                 return (
-                  <tr key={market_cap_rank}>
+                  <tr key={id}>
                     <td>
                       <FadeIn>
                         {user ? (
-                          portfolio.find((item) => item.name === name) ? (
+                          savedCoin?.find(
+                            (item: { name: string }) => item.name === name
+                          ) ? (
                             <RiStarSFill
                               className='w-[24px] h-[24px] cursor-pointer'
                               onClick={() => {
-                                dispatch(removeFromPortfolio(crypto));
+                                removeFromPortfolio(crypto);
                                 removedAlert(name);
                               }}
                             />
@@ -110,7 +86,7 @@ const Coins = ({ cryptos, searchValue, inputHandler }: CoinsTypes) => {
                             <RiStarSLine
                               className='w-[24px] h-[24px] cursor-pointer'
                               onClick={() => {
-                                dispatch(addToPortfolio(crypto));
+                                addToPortfolio(crypto);
                                 addedAlert(name);
                               }}
                             />
@@ -129,13 +105,7 @@ const Coins = ({ cryptos, searchValue, inputHandler }: CoinsTypes) => {
                     </td>
                     <td className='flex gap-3 items-center mr-[32px] lg:mr-[0px]'>
                       <FadeIn>
-                        <Image
-                          src={image}
-                          alt={name}
-                          width={30}
-                          height={30}
-                          className='w-auto h-auto'
-                        />
+                        <Image src={image} alt={name} width={30} height={30} />
                       </FadeIn>
                       <FadeIn>
                         <div className='flex flex-col lg:flex-row lg:gap-3 lg:items-baseline'>
@@ -188,7 +158,7 @@ const Coins = ({ cryptos, searchValue, inputHandler }: CoinsTypes) => {
         <motion.div
           variants={infiniteRotate}
           animate='rotate'
-          className='absolute -top-[64px] right-[416px] rotate-180 hidden lg:block '
+          className='absolute -top-[64px] right-[416px] rotate-180 hidden xl:block '
         >
           <div className='scale-75 lg:scale-100'>
             <svg
@@ -212,7 +182,7 @@ const Coins = ({ cryptos, searchValue, inputHandler }: CoinsTypes) => {
               <g>
                 <use xlinkHref='#circlePath' fill='none' />
 
-                <text fill={theme === 'light-theme' ? '#343a40' : '#f8f9fa'}>
+                <text fill={'#f8f9fa'}>
                   <textPath xlinkHref='#circlePath' fontSize='2.15rem'>
                     SCROLL TO EXPLORE - SCROLL TO EXPLORE -
                   </textPath>

@@ -1,4 +1,3 @@
-import React from 'react';
 import Image from 'next/image';
 import SingleCoinTypes from '../../interfaces/singleCoinTypes';
 import { Sparklines, SparklinesLine } from 'react-sparklines';
@@ -7,13 +6,8 @@ import { BsGlobe, BsReddit, BsCurrencyDollar } from 'react-icons/bs';
 import DOMPurify from 'dompurify';
 import { useRouter } from 'next/router';
 import { RiStarSLine, RiStarSFill } from 'react-icons/ri';
-import {
-  openLoginModal,
-  addToPortfolio,
-  removeFromPortfolio,
-} from '../../redux/features/homeSlice';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
+import { openLoginModal } from '../../redux/features/homeSlice';
+import { useDispatch } from 'react-redux';
 import { useAuth } from '../../context/AuthContext';
 import Loading from '../Loading';
 import { addedAlert, removedAlert } from '../Toasts';
@@ -23,9 +17,7 @@ import { FadeInText } from '../Animations/fadeInText';
 const SingleCoin = ({ coin, loading }: SingleCoinTypes) => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { user } = useAuth();
-
-  const { portfolio } = useSelector((store: RootState) => store.home);
+  const { user, savedCoin, addToPortfolio, removeFromPortfolio } = useAuth();
 
   if (loading) {
     return <Loading />;
@@ -120,11 +112,13 @@ const SingleCoin = ({ coin, loading }: SingleCoinTypes) => {
             </div>
             <div className='flex items-center gap-2 font-semibold text-lg'>
               {user ? (
-                portfolio.find((item) => item.name === name) ? (
+                savedCoin.find(
+                  (item: { name: string }) => item.name === name
+                ) ? (
                   <RiStarSFill
                     className='w-[24px] h-[24px] cursor-pointer'
                     onClick={() => {
-                      dispatch(removeFromPortfolio(crypto));
+                      removeFromPortfolio(crypto);
                       removedAlert(name);
                     }}
                   />
@@ -132,7 +126,7 @@ const SingleCoin = ({ coin, loading }: SingleCoinTypes) => {
                   <RiStarSLine
                     className='w-[24px] h-[24px] cursor-pointer'
                     onClick={() => {
-                      dispatch(addToPortfolio(crypto));
+                      addToPortfolio(crypto);
                       addedAlert(name);
                     }}
                   />
@@ -143,7 +137,8 @@ const SingleCoin = ({ coin, loading }: SingleCoinTypes) => {
                   onClick={() => dispatch(openLoginModal())}
                 />
               )}
-              {user && portfolio.find((item) => item.name === name)
+              {user &&
+              savedCoin.find((item: { name: string }) => item.name === name)
                 ? 'Remove from Portfolio'
                 : 'Add to Portfolio'}
             </div>
