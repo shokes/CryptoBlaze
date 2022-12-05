@@ -45,11 +45,6 @@ body::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera*/
 }
 
-.animation {
-  transition-duration: 300ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
-}
-
 .container {
   max-width: 75rem;
   margin: 0 auto;
@@ -76,17 +71,9 @@ th {
   transition: background 0.1s, box-shadow 0.3s, color 0.1s;
 }
 
-.trending {
-  transition: transform 0.2s;
-}
-
 .hover:hover {
   box-shadow: 0 3px #1864ab;
   transition: background 0.1s, box-shadow 0.3s, color 0.1s;
-}
-
-.trending:hover {
-  transform: scale(1.1);
 }
 
 .portfolio-container {

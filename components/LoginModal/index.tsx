@@ -1,8 +1,6 @@
 import React from 'react';
 import ModalLayout from '../ModalLayout';
 import { IoMdClose } from 'react-icons/io';
-import GoogleIcon from '../../public/Logo/images.png';
-import Image from 'next/image';
 import {
   closeLoginModal,
   openSignUpModal,
@@ -14,7 +12,7 @@ import { useAuth } from '../../context/AuthContext';
 const LoginModal = () => {
   const dispatch = useDispatch();
 
-  const { login, googleSignIn } = useAuth();
+  const { login } = useAuth();
   const [errorMessage, setErrorMessage] = useState('');
 
   const [data, setData] = useState({
@@ -27,6 +25,7 @@ const LoginModal = () => {
 
     try {
       await login(data.email, data.password);
+      dispatch(closeLoginModal());
     } catch (e: any) {
       console.log(e.message);
       setErrorMessage(e.message);
@@ -35,7 +34,7 @@ const LoginModal = () => {
 
   return (
     <ModalLayout>
-      <div className='relative  '>
+      <div className='relative mt-[55px] lg:mt-0 '>
         <h2 className='font-bold text-xl mb-[36.8px]'>
           Login to track your favorite coin easily 🚀
         </h2>
@@ -78,31 +77,18 @@ const LoginModal = () => {
           {errorMessage && (
             <p className='my-3 text-red text-xs'>{errorMessage}</p>
           )}
-          <div className='flex flex-col gap-3 mb-[32px]'>
+          <div className='mb-[14px]'>
             <button
               className='bg-blue py-2 w-full border-blue border rounded text-[#fff] hover:bg-hover  duration-150 ease-in-out'
               type='submit'
             >
               Login
             </button>
-            <span className='text-center'>Or</span>
-            <button
-              className='flex items-center gap-3 justify-center border py-2 hover:text-blue   border-blue hover:border-[#000] duration-150 ease-in-out rounded w-full'
-              onClick={googleSignIn}
-            >
-              <Image
-                src={GoogleIcon}
-                width={18}
-                height={18}
-                alt='google icon'
-              />
-              Continue with Google
-            </button>
           </div>
         </form>
 
         <span
-          className=' right-0 -top-[32px] absolute cursor-pointer'
+          className=' right-0 -top-[88px]  lg:-top-[32px] absolute cursor-pointer'
           onClick={() => {
             dispatch(closeLoginModal());
           }}

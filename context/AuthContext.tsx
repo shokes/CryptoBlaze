@@ -5,8 +5,6 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
-  GoogleAuthProvider,
-  signInWithPopup,
 } from 'firebase/auth';
 import { auth, db } from '../config/firebase';
 import {
@@ -16,7 +14,6 @@ import {
   onSnapshot,
   setDoc,
 } from 'firebase/firestore';
-import { closeSignUpModal, closeLoginModal } from '../redux/features/homeSlice';
 
 const AuthContext = createContext<any>({});
 
@@ -29,16 +26,6 @@ export const AuthContextProvider = ({
 }) => {
   const [user, setUser] = useState<any>({});
   const [savedCoin, setSavedCoin] = useState<any>([]);
-
-  const dispatch = useDispatch();
-  // useEffect(() => {
-  //   const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-  //     setUser(currentUser);
-  //   });
-  //   return () => {
-  //     unsubscribe();
-  //   };
-  // }, []);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -74,21 +61,6 @@ export const AuthContextProvider = ({
 
   const logout = async () => {
     return signOut(auth);
-  };
-
-  const googleSignIn = async () => {
-    const provider = new GoogleAuthProvider();
-    const response = await signInWithPopup(auth, provider);
-    const email: any = response.user.email;
-    const data = doc(db, 'users', email);
-
-    return setDoc(
-      data,
-      {
-        portfolio: [],
-      },
-      { merge: true }
-    );
   };
 
   const coinPath = doc(db, 'users', `${user?.email}`);
@@ -179,7 +151,6 @@ export const AuthContextProvider = ({
         login,
         signup,
         logout,
-        googleSignIn,
         addToPortfolio,
         removeFromPortfolio,
         savedCoin,

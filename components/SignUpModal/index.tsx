@@ -1,8 +1,6 @@
 import React from 'react';
 import ModalLayout from '../ModalLayout';
 import { IoMdClose } from 'react-icons/io';
-import GoogleIcon from '../../public/Logo/images.png';
-import Image from 'next/image';
 import {
   closeSignUpModal,
   openLoginModal,
@@ -42,22 +40,13 @@ const SignUpModal = () => {
 
   return (
     <ModalLayout>
-      <div className='relative'>
+      <div className='relative mt-[55px] lg:mt-0 '>
         <h2 className='font-bold text-xl mb-2'>
           IT&apos;S FREE! Track your favorite coin easily 🚀
         </h2>
-        <span className='text-xs text-[#ced4da] '>
+        <p className='text-xs text-[#ced4da] mb-2'>
           By continuing, you agree to CryptoBlaze Terms of Service.
-        </span>
-
-        <div className='flex flex-col gap-4 mb-4'>
-          <button className='flex mt-3 items-center gap-3 justify-center border py-2 border-blue hover:border-[#000] hover:text-blue  duration-150 ease-in-out rounded w-full'>
-            <Image src={GoogleIcon} width={18} height={18} alt='google icon' />
-            Continue with Google
-          </button>
-
-          <span className='text-center'>Or</span>
-        </div>
+        </p>
 
         <form onSubmit={handleSignup}>
           <div className='flex flex-col gap-2 mb-6'>
@@ -124,7 +113,7 @@ const SignUpModal = () => {
           </span>
         </p>
         <span
-          className=' right-0 -top-[32px] absolute cursor-pointer '
+          className=' right-0 -top-[88px]  lg:-top-[32px] absolute '
           onClick={() => {
             dispatch(closeSignUpModal());
           }}

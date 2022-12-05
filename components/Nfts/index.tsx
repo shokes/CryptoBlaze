@@ -22,8 +22,8 @@ const Nfts = ({ nftList, loading }: NftsTypes) => {
             <tr>
               <th>#</th>
               <th>Name</th>
-              <th>Asset Platform</th>
-              <th>Contact Address</th>
+              <th className='nowrap '>Asset Platform</th>
+              <th className='nowrap '>Contact Address</th>
             </tr>
           </thead>
 
