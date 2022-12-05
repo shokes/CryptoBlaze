@@ -17,7 +17,7 @@ const Trending = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const activePage = 'trending';
+  const activePage = 'Trending';
   return (
     <Layout activePage={activePage}>
       <TrendingCoins cryptos={trending} loading={loading} />

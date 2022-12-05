@@ -16,7 +16,9 @@ const Menu = ({ active }: MenuType) => {
               href={url}
               key={id}
               className={` flex items-center  nowrap  gap-2  ${
-                active === path ? 'active ' : 'hover'
+                active?.toLocaleLowerCase() === path.toLocaleLowerCase()
+                  ? 'active '
+                  : 'hover'
               }`}
             >
               {title === 'Portfolio' ? (

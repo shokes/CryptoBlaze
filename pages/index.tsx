@@ -28,7 +28,7 @@ const Home: NextPage = () => {
   >([]);
 
   const searchValue = useRef<HTMLInputElement>(null);
-  const activePage = 'CryptoBlaze';
+  const activePage = 'Home';
 
   useEffect(() => {
     dispatch(getCryptos());

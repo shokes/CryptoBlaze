@@ -21,7 +21,7 @@ const SingleCoinPage = () => {
       try {
         setLoading(true);
         const response = await fetch(
-          `https://api.coingecko.com/api/v3/coins/${id}?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=true`
+          `${process.env.BASE_URL}coins/${id}?${process.env.LAST_URL}`
         );
         const data = await response.json();
         setLoading(false);

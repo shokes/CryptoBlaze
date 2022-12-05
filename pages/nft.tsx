@@ -10,7 +10,7 @@ import { RootState } from '../redux/store';
 const Nft = () => {
   const dispatch = useDispatch();
   const { nfts, loading } = useSelector((store: RootState) => store.nfts);
-  const activePage = 'nft';
+  const activePage = 'NFT';
 
   useEffect(() => {
     dispatch(getNfts());

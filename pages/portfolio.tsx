@@ -3,7 +3,6 @@ import Navigation from '../components/Navigation';
 import Link from 'next/link';
 import { BiRightArrow } from 'react-icons/bi';
 import Footer from '../components/Footer';
-import Head from 'next/head';
 import Image from 'next/image';
 import { openLoginModal } from '../redux/features/homeSlice';
 import { openSignUpModal } from '../redux/features/homeSlice';
@@ -16,18 +15,18 @@ import CollapseNav from '../components/Navigation/CollapseNav';
 import Homepage from '../public/Images/homepage.png';
 import { useIsTouchDevice } from '../hooks/useIsTouchDevice';
 import Progressbar from '../components/ProgressBar';
+import { NextSeo } from 'next-seo';
 
 const Portfolio = () => {
   const dispatch = useDispatch();
   const { user } = useAuth();
+  const activePage = 'Portfolio';
 
   const isTouchDevice = useIsTouchDevice();
 
   return (
     <section>
-      <Head>
-        <title>Portfolio</title>
-      </Head>
+      <NextSeo title={activePage} />
       <div className='container pb-4'>
         {' '}
         <Navigation />
