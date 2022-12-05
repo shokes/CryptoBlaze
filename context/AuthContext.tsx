@@ -28,7 +28,8 @@ export const AuthContextProvider = ({
   children: React.ReactNode;
 }) => {
   const [user, setUser] = useState<any>({});
-  const [savedCoin, setSavedCoin] = useState([]);
+  const [savedCoin, setSavedCoin] = useState<any>([]);
+
   const dispatch = useDispatch();
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -53,20 +54,19 @@ export const AuthContextProvider = ({
   };
 
   const login = (email: string, password: string) => {
-    signInWithEmailAndPassword(auth, email, password);
-    const data = doc(db, 'users', email);
-    return setDoc(
-      data,
-      {
-        portfolio: [],
-      },
-      { merge: true }
-    );
+    return signInWithEmailAndPassword(auth, email, password);
+    // const data = doc(db, 'users', email);
+    // return setDoc(
+    //   data,
+    //   {
+    //     portfolio: savedCoin,
+    //   },
+    //   { merge: true }
+    // );
   };
 
   const logout = async () => {
-    setUser(null);
-    await signOut(auth);
+    return signOut(auth);
   };
 
   const googleSignIn = async () => {
@@ -74,7 +74,7 @@ export const AuthContextProvider = ({
     const response = await signInWithPopup(auth, provider);
     const email: any = response.user.email;
     const data = doc(db, 'users', email);
-    dispatch(closeLoginModal());
+    //  dispatch(closeLoginModal());
     return setDoc(
       data,
       {
