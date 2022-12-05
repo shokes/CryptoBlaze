@@ -31,17 +31,33 @@ export const AuthContextProvider = ({
   const [savedCoin, setSavedCoin] = useState<any>([]);
 
   const dispatch = useDispatch();
+  // useEffect(() => {
+  //   const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+  //     setUser(currentUser);
+  //   });
+  //   return () => {
+  //     unsubscribe();
+  //   };
+  // }, []);
+
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser({
+          uid: user.uid,
+          email: user.email,
+          displayName: user.displayName,
+        });
+      } else {
+        setUser(null);
+      }
     });
-    return () => {
-      unsubscribe();
-    };
+
+    return () => unsubscribe();
   }, []);
 
-  const signup = (email: string, password: string) => {
-    createUserWithEmailAndPassword(auth, email, password);
+  const signup = async (email: string, password: string) => {
+    await createUserWithEmailAndPassword(auth, email, password);
     const data = doc(db, 'users', email);
     return setDoc(
       data,
@@ -65,7 +81,7 @@ export const AuthContextProvider = ({
     const response = await signInWithPopup(auth, provider);
     const email: any = response.user.email;
     const data = doc(db, 'users', email);
-    //  dispatch(closeLoginModal());
+
     return setDoc(
       data,
       {

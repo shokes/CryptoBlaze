@@ -14,6 +14,7 @@ import { useAuth } from '../../context/AuthContext';
 const SignUpModal = () => {
   const dispatch = useDispatch();
   const [passwordLengthError, setPasswordLengthError] = useState(false);
+
   const [errorMessage, setErrorMessage] = useState('');
   const { signup } = useAuth();
 
@@ -24,13 +25,15 @@ const SignUpModal = () => {
 
   const handleSignup = async (e: any) => {
     e.preventDefault();
-
     if (data.password.length < 7) {
       setPasswordLengthError(true);
+      return;
     }
-    setPasswordLengthError(false);
+
     try {
+      setPasswordLengthError(false);
       await signup(data.email, data.password);
+      dispatch(closeSignUpModal());
     } catch (e: any) {
       console.log(e.message);
       setErrorMessage(e.message);
