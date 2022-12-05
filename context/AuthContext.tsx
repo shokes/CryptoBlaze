@@ -43,7 +43,6 @@ export const AuthContextProvider = ({
   const signup = (email: string, password: string) => {
     createUserWithEmailAndPassword(auth, email, password);
     const data = doc(db, 'users', email);
-
     return setDoc(
       data,
       {
@@ -55,14 +54,6 @@ export const AuthContextProvider = ({
 
   const login = (email: string, password: string) => {
     return signInWithEmailAndPassword(auth, email, password);
-    // const data = doc(db, 'users', email);
-    // return setDoc(
-    //   data,
-    //   {
-    //     portfolio: savedCoin,
-    //   },
-    //   { merge: true }
-    // );
   };
 
   const logout = async () => {
