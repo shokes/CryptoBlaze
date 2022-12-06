@@ -5,6 +5,7 @@ import { getCryptos } from '../redux/features/homeSlice';
 import { useEffect, useState, useRef } from 'react';
 import { RootState } from '../redux/store';
 import { useSelector, useDispatch } from 'react-redux';
+import { Fragment } from 'react';
 
 const Home: NextPage = () => {
   const dispatch = useDispatch();
@@ -61,7 +62,7 @@ const Home: NextPage = () => {
   };
 
   return (
-    <div>
+    <Fragment>
       <Layout activePage={activePage}>
         <Coins
           cryptos={coins}
@@ -69,7 +70,7 @@ const Home: NextPage = () => {
           searchValue={searchValue}
         />
       </Layout>
-    </div>
+    </Fragment>
   );
 };
 
