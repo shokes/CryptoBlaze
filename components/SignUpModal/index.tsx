@@ -104,7 +104,7 @@ const SignUpModal = () => {
         </form>
 
         <p className='text-center text-sm'>
-          Already have an account yet?{' '}
+          Already have an account?{' '}
           <span
             className='text-blue cursor-pointer'
             onClick={() => dispatch(openLoginModal())}

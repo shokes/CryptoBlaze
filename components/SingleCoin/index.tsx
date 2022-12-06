@@ -112,7 +112,7 @@ const SingleCoin = ({ coin, loading }: SingleCoinTypes) => {
             </div>
             <div className='flex items-center gap-2 font-semibold text-lg'>
               {user ? (
-                savedCoin.find(
+                savedCoin?.find(
                   (item: { name: string }) => item.name === name
                 ) ? (
                   <RiStarSFill
@@ -138,7 +138,7 @@ const SingleCoin = ({ coin, loading }: SingleCoinTypes) => {
                 />
               )}
               {user &&
-              savedCoin.find((item: { name: string }) => item.name === name)
+              savedCoin?.find((item: { name: string }) => item.name === name)
                 ? 'Remove from Portfolio'
                 : 'Add to Portfolio'}
             </div>
