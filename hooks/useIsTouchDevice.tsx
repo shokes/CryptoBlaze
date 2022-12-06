@@ -28,6 +28,8 @@ export const useIsTouchDevice = () => {
     return () => {
       window.removeEventListener('resize', onResize, false);
     };
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return isTouchDevice;

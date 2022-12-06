@@ -179,11 +179,15 @@ th {
 
 /* responsiveness */
 
+@media (max-width: 77em) {
+  .container {
+    max-width: 60rem;
+  }
+}
+
 @media (max-width: 68em) {
   .container {
     max-width: 90%;
-    margin-left: auto;
-    margin-right: auto;
   }
 
   .portfolio-container {
