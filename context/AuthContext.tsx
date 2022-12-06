@@ -23,8 +23,14 @@ export const AuthContextProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [user, setUser] = useState<any>({});
-  const [savedCoin, setSavedCoin] = useState<any>([]);
+  const [user, setUser] = useState<
+    | {
+        uid: string;
+        email: string | null;
+      }
+    | any
+  >({});
+  const [savedCoin, setSavedCoin] = useState([]);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -32,7 +38,6 @@ export const AuthContextProvider = ({
         setUser({
           uid: user.uid,
           email: user.email,
-          displayName: user.displayName,
         });
       } else {
         setUser(null);
