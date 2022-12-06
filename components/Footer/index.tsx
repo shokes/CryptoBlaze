@@ -28,19 +28,19 @@ const Footer = () => {
           <h2 className='mb-3 font-bold'>EXPLORE</h2>
           <Link
             href='/coins/bitcoin'
-            className='mb-1 text-sm hover:underline underline-offset-2'
+            className='mb-1 text-sm hover:underline underline-offset-2 hover:text-blue'
           >
             BITCOIN PRICE
           </Link>
           <Link
             href='/coins/ethereum'
-            className='mb-1 text-sm hover:underline underline-offset-2'
+            className='mb-1 text-sm hover:underline underline-offset-2 hover:text-blue'
           >
             ETHEREUM PRICE
           </Link>
           <Link
             href='/coins/binancecoin'
-            className='text-sm hover:underline underline-offset-2'
+            className='text-sm hover:underline underline-offset-2 hover:text-blue'
           >
             BNB PRICE
           </Link>
@@ -50,13 +50,13 @@ const Footer = () => {
           <h2 className='mb-3 font-bold'>NFTS</h2>
           <Link
             href='/nft'
-            className='mb-1 text-sm hover:underline underline-offset-2'
+            className='mb-1 text-sm hover:underline underline-offset-2 hover:text-blue'
           >
             NFTS
           </Link>
           <Link
             href='/trending'
-            className='text-sm hover:underline underline-offset-2'
+            className='text-sm hover:underline underline-offset-2 hover:text-blue'
           >
             TRENDING COINS
           </Link>
