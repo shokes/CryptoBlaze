@@ -57,8 +57,6 @@ const CollapseNav = () => {
               <FaUserAlt className='w-[1.4rem] h-[1.4rem] cursor-pointer' />
             </div>
           )}
-
-         
         </div>
         {loginModal && <LoginModal />}
         {signUpModal && <SignUpModal />}
@@ -101,8 +99,6 @@ const CollapseNav = () => {
                   <FaUserAlt className='w-[1.4rem] h-[1.4rem] cursor-pointer' />
                 </div>
               )}
-
-    
             </div>
           </div>
 
@@ -131,14 +127,25 @@ const CollapseNav = () => {
             );
           })}
           <div className='mt-[64px] mb-[32px] text-right'>
-            <button
-              className='bg-blue  py-1 px-3 text-[#fff] rounded hover:bg-hover duration-150 ease-in-out'
-              onClick={() => {
-                logout();
-              }}
-            >
-              Logout
-            </button>
+            {user ? (
+              <button
+                className='bg-blue  py-1 px-3 text-[#fff] rounded hover:bg-hover duration-150 ease-in-out'
+                onClick={() => {
+                  logout();
+                }}
+              >
+                Logout
+              </button>
+            ) : (
+              <button
+                className='bg-blue  py-1 px-3 text-[#fff] rounded hover:bg-hover duration-150 ease-in-out'
+                onClick={() => {
+                  dispatch(openLoginModal());
+                }}
+              >
+                Login
+              </button>
+            )}
           </div>
           <div className='justify-center flex items-center gap-3 mb-[16px]'>
             <a
