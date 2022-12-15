@@ -113,7 +113,7 @@ const SignUpModal = () => {
           </span>
         </p>
         <span
-          className=' right-0 -top-[88px]  lg:-top-[32px] absolute '
+          className=' right-0 -top-[88px]  lg:-top-[32px] absolute cursor-pointer'
           onClick={() => {
             dispatch(closeSignUpModal());
           }}
