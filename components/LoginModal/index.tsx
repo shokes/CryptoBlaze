@@ -26,9 +26,11 @@ const LoginModal = () => {
     try {
       await login(data.email, data.password);
       dispatch(closeLoginModal());
-    } catch (e: any) {
-      console.log(e.message);
-      setErrorMessage(e.message);
+    } catch (e) {
+      if (e instanceof Error) {
+        console.log(e.message);
+        setErrorMessage(e.message);
+      }
     }
   };
 
